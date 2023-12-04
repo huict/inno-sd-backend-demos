@@ -1,0 +1,36 @@
+version: "3.9"
+services:
+  lb:
+    image: haproxy:latest
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8090:80"
+      - "127.0.0.1:9000:9000"
+    volumes:
+      - ./development/haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+  pg:
+    image: postgres:latest
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - ./development/db/docker-entrypoint-initdb.d/:/docker-entrypoint-initdb.d/:ro
+    env_file: development/db/.env
+
+    #debug: #soms kan het handig zijn om even met een iets minder minimale container -in- het compose-netwerk te zitten
+    #image: debian
+  mongodb:
+    image: mongo
+    restart: unless-stopped
+#    volumes:
+#      - ./mongo/db/init:/docker-entrypoint-initdb.d/
+    ports:
+      - "27017:27017"
+  rabbitmq:
+    restart: always
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_NODENAME: bep3-rabbitmq-node
