@@ -1,0 +1,48 @@
+Subject: [PATCH] rename
+---
+Index: src/main/java/nl/hu/sd/inno/shop/domain/Person.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/nl/hu/sd/inno/shop/domain/Person.java b/src/main/java/nl/hu/sd/inno/shop/domain/Person.java
+--- a/src/main/java/nl/hu/sd/inno/shop/domain/Person.java	(revision 9bbcaaddbdfa12e683c8d2fa5444bf16b1693091)
++++ b/src/main/java/nl/hu/sd/inno/shop/domain/Person.java	(date 1701722842969)
+@@ -11,16 +11,16 @@
+     @Column(unique = true)
+     private String email;
+ 
+-    private String firstName;
+-    private String lastName;
++    private String givenName;
++    private String familyName;
+ 
+     protected Person(){}
+ 
+-    public Person(String email, String firstName, String lastName) {
++    public Person(String email, String givenName, String familyName) {
+ 
+         this.email = email;
+-        this.firstName = firstName;
+-        this.lastName = lastName;
++        this.givenName = givenName;
++        this.familyName = familyName;
+     }
+ 
+     public Long getId() {
+@@ -31,11 +31,11 @@
+         return email;
+     }
+ 
+-    public String getFirstName() {
+-        return firstName;
++    public String getGivenName() {
++        return givenName;
+     }
+ 
+-    public String getLastName() {
+-        return lastName;
++    public String getFamilyName() {
++        return familyName;
+     }
+ }
