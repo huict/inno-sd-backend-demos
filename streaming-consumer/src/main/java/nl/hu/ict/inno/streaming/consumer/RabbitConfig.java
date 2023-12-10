@@ -1,5 +1,6 @@
 package nl.hu.ict.inno.streaming.consumer;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rabbitmq.stream.Environment;
 import com.rabbitmq.stream.OffsetSpecification;
 import org.springframework.amqp.core.Queue;
@@ -7,9 +8,9 @@ import org.springframework.amqp.core.QueueBuilder;
 import org.springframework.amqp.rabbit.listener.RabbitListenerContainerFactory;
 import org.springframework.amqp.rabbit.listener.adapter.AmqpMessageHandlerMethodFactory;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
+import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.messaging.converter.MessageConverter;
 import org.springframework.messaging.handler.annotation.support.DefaultMessageHandlerMethodFactory;
 import org.springframework.messaging.handler.annotation.support.MessageHandlerMethodFactory;
 import org.springframework.rabbit.stream.config.StreamRabbitListenerContainerFactory;
@@ -28,32 +29,35 @@ public class RabbitConfig {
     }
 
     @Bean
-    public Queue normalQueue(){
+    public Queue normalQueue() {
         return QueueBuilder.durable("someQueue")
                 .build();
     }
 
     @Bean
-    public RabbitStreamTemplate streamTemplate(Environment env){
-        var template = new RabbitStreamTemplate(env, "someStream");
-        template.setMessageConverter(new Jackson2JsonMessageConverter());
-        return template;
+    public ObjectMapper mapper(){
+        return new ObjectMapper();
     }
 
     @Bean
-    public MessageConverter converter(){
-        return new CustomJacksonConverter();
+    public MessageConverter converter(ObjectMapper mapper) {
+        return new Jackson2JsonMessageConverter(mapper);
     }
 
+    @Bean
+    public RabbitStreamTemplate streamTemplate(Environment env, MessageConverter converter) {
+        var template = new RabbitStreamTemplate(env, "someStream");
+        template.setMessageConverter(converter);
+        return template;
+    }
 
     @Bean
     RabbitListenerContainerFactory<StreamListenerContainer> streams(Environment env) {
         StreamRabbitListenerContainerFactory factory = new StreamRabbitListenerContainerFactory(env);
 
         factory.setConsumerCustomizer((id, builder) -> {
-//builder.messageHandler()
-            builder.name("myConsumer")
 
+            builder.name("consumeAllTheThings")
                     .offset(OffsetSpecification.first())
                     .manualTrackingStrategy();
         });
@@ -61,25 +65,4 @@ public class RabbitConfig {
         return factory;
     }
 
-    @Bean
-    public MessageHandlerMethodFactory createDefaultMessageHandlerMethodFactory() {
-        DefaultMessageHandlerMethodFactory defaultFactory = new AmqpMessageHandlerMethodFactory();
-
-        defaultFactory.setMessageConverter(converter());
-
-        defaultFactory.afterPropertiesSet();
-        return defaultFactory;
-    }
-//
-//    @Bean
-//    RabbitListenerContainerFactory<StreamListenerContainer> nativeFactory(Environment env) {
-//        StreamRabbitListenerContainerFactory factory = new StreamRabbitListenerContainerFactory(env);
-//        factory.setNativeListener(true);
-//        factory.setConsumerCustomizer((id, builder) -> {
-//            builder.name("myConsumer")
-//                    .offset(OffsetSpecification.first())
-//                    .manualTrackingStrategy();
-//        });
-//        return factory;
-//    }
 }
