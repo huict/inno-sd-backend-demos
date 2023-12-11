@@ -34,3 +34,6 @@ services:
     ports:
       - "1113:1113"
       - "2113:2113"
+    environment:
+      EVENTSTORE_INSECURE: true
+      EVENTSTORE_ENABLE-ATOM-PUB-OVER-HTTP: true
