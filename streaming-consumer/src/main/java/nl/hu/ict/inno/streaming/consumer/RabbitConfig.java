@@ -56,7 +56,8 @@ public class RabbitConfig {
         StreamRabbitListenerContainerFactory factory = new StreamRabbitListenerContainerFactory(env);
 
         factory.setConsumerCustomizer((id, builder) -> {
-
+            //Uiteraard is het waarschijnlijk niet handig om altijd vanaf het begin te lezen, maar het
+            //is wel -het- grote verschil in vergelijking tot reguliere messaging
             builder.name("consumeAllTheThings")
                     .offset(OffsetSpecification.first())
                     .manualTrackingStrategy();

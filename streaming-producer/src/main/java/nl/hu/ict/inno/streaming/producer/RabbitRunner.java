@@ -8,7 +8,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.rabbit.stream.producer.RabbitStreamTemplate;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class RabbitRunner implements CommandLineRunner {
 
     @Autowired
