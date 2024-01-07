@@ -1,0 +1,8 @@
+#Ignore build-stuff
+*.iml
+.idea
+target
+
+#Ignore logs
+*.log
+*.gz

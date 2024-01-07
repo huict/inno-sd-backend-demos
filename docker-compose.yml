@@ -1,0 +1,31 @@
+version: "3.9"
+services:
+  yaeger:
+    image: jaegertracing/all-in-one
+    ports:
+      - "5775:5775"
+      - "6831:6831"
+      - "6832:6832"
+      - "4317:4317"
+      - "4318:4318"
+      - "5778:5778" #HTTP Configs
+      - "16686:16686" #HTTP UI
+      - "14268:14268" #HTTP Yaeger collector
+      - "9411:9411" #HTTP Zipkin collector
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - ./development/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+  grafana:
+    image: grafana/grafana-oss
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./development/grafana:/etc/grafana/provisioning/datasources
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
