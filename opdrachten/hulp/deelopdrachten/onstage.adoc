@@ -1,0 +1,10 @@
+=== Onstage
+Een paar ideeën over in wat voor stukken je het systeem zou kunnen snijden:
+*	Stagebedrijven/contactpersonen beheren
+Stage/afstudeerbedrijven bieden vaak over de jaren heen meerdere stages of afstudeeropdrachten aan. De geschiedenis hiervan kunnen bijhouden (hoe ging het, wat vond de student er van, wat vond de beoordelaar er van, zijn er andere gekke dingen?) is heel handig om snel en makkelijk in te kunnen schatten hoe een nieuwe opdracht zal lopen.
+*	Stages goedkeuren-proces
+Het goedkeuringsproces is nogal een interessant dingetje. Eerst doet de student een voorstel, dan keurt een commissielid dat goed (of niet natuurlijk). Vervolgens moet een goedgekeurd voorstel door de student, de opdrachtgever en het commissielid ondertekent worden. 
+*	Stage-verloop-bijhouden process
+De student moet ?dagelijks? een voortgangsrapportage kunnen indienen. Uit al die losse onderdelen moeten we gegevens kunnen aggregeren. (gaat de student de benodigde uren halen, etc.)
+Stages kunnen voorgesteld worden, en op verschillende momenten zijn daar verschillende docenten bij betrokken. (Vooraf: stagecommissie, middenin: Stagebegeleider, achteraf: Stagebeoordelaar)
+

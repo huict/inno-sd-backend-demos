@@ -1,0 +1,17 @@
+=== Canvas
+Canvas kennen jullie! Echt waar. Op Canvas worden cursussen aangemaakt als template, en die kunnen dan elke keer dat de cursus gegeven wordt geïnstantieerd worden. Daarna kunnen er tweaks voor die specifieke editie van de cursus worden gedaan.
+
+Een cursus in Canvas bestaat (in dit kleine geval) uit paginas en opdrachten. Deze paginas en opdrachten kunnen gegroepeerd worden in modules.
+
+Een paar ideeën over in wat voor stukken je het systeem zou kunnen snijden:
+
+*	Beheren cursussen, inschrijvingen, voorvereisten. Zo heb je bijv. cursus X of Y nodig om je voor cursus Z te mogen inschrijven. En hoe zit dat met instromers van andere opleidingen? Krijgen die vrijstellingen? 
+*	Beheren studenten en docenten. Vakken kunnen ingedeeld worden in klassen, waar dan weer studenten en klassen aan gekoppeld kunnen worden. Hier heb ik niet zo 1,2,3 een redelijk voorbeeld waar je DDD zou kunnen toepassen…
+*	Lesmateriaal, modules, onderdelen (templates per vak, tweaks per jaar). Opdrachtdeadlines worden dan opgeschoven relatief aan de startdatum (rekening houdend met vakanties?).
+*	Opdrachten en hun inleveringen. En vervolgens de beoordeling? Wie mag dat? Wie krijgt er notificaties over?
+
+
+Rode draad:
+Een template voor een vak (modules/lessen) wordt aangemaakt. Dat template wordt geïnstantieerd en studenten kunnen zich er voor inschrijven. Docenten kunnen gekoppeld worden.
+
+

@@ -1,0 +1,7 @@
+=== Holistiq / Inno
+Een paar ideeën over in wat voor stukken je het systeem zou kunnen snijden:
+*	Beheren leerdoelen, criteria. Een docent moest in Holistiq leerdoelen definiëren (OOP programmeren), en kon aan deze leerdoelen concrete criteria koppelen (gebruik abstracte classes/interfaces, of bijv. het omgaan met compositie van objecten). Een leerdoel kon bedoeld zijn voor meerdere en/of verschillende groepen studenten (bijv. BIMmers vs SDers).
+*	Beheren projecten, semesters en opleidingen. Verschillende opleidingen konden hun vakken registreren, die dan elk jaar met andere studenten en docenten konden draaien. Een vak is in dit geval een groep leerdoelen die behaald dienen te worden. Naast de leerdoelen was er ook altijd een project. Dat project had een beschrijving, en was geschikt voor een bepaalde teamsamenstelling (2-3 SDers, Max 1 AI, en Min. 1 CSCer bijv.)
+*	Inleveringen studenten verwerken, overzichten genereren. Het vernieuwende punt van Holistiq was dat een student wanneer hij/zij maar wou, zo vaak hij/zij maar wou kon inleveren. Altijd op dezelfde manier en plek. De student geeft bij de inlevering aan voor welke criteria de inlevering telt. Docenten kunnen een totaaloverzicht per leerdoel krijgen hoeveel inleveringen er per leerdoel voor welk criteria zijn ingeleverd.
+
+

@@ -1,0 +1,7 @@
+version: "3.9"
+services: 
+  ascii:
+    image: asciidoctor/docker-asciidoctor
+    command: "asciidoctor-pdf hulp/hulp.adoc"
+    volumes:
+      - ".:/documents"

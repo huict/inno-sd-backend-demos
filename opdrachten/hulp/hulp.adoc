@@ -1,0 +1,158 @@
+= Hogeschool Utrecht LeerPlatform (HULP)
+
+
+== Inleiding
+
+In de kennisroute gaan we een applicatie bouwen voor het onderwijs. Het idee is dat elke losse applicatie een diepteprototype oplevert van een kopie van een bij-de-HU gebruikte of gewenste applicatie. 
+
+Nouja, een applicatie? Het is een diepteprototype. De code die je schrijft dient als input voor een gesprek bij de reviews. Tijdens die reviews gaat het om je kennis van de leeruitkomsten Gedistribueerde Systemen en Gedreven Ontwerp.
+
+Waarom is dat onderscheid belangrijk? 
+
+*	Nou, ten eerste omdat je voor het project al een echte applicatie moet maken. Dus dan zou dit een beetje dubbelop worden. 
+*	Ten tweede omdat je voor het aantonen van kennis behoorlijk kan valsspelen met het bouwen van een applicatie:
+*	Je kunt bijv. een onderdeel van je applicatie heel netjes uitwerken, maar een aantal andere onderdelen ‘afraffelen’. 
+*	Een ander voorbeeld is dat je bewust precies het tegenovergestelde doet. Dan kunnen we in de review de voors- en tegens afwegen.
+*	Je kan een onderdeel dubbel uitvoeren, zodat je twee mogelijke aanpakken kan vergelijken (bijv. een SQL en een NoSQL uitwerking).
+
+Als je duidelijk aangeeft in de review (en in een commentje in de code) wat het idee is, dan is er een boel mogelijk.
+
+Elke klas wordt in teams ingedeeld, en elk team kiest één van de onderstaande deelapplicaties om uit te werken. In de huidige opzet werken we met teams van ~3 en voeren we elke opdracht dubbel uit. Dus voor een klas van 30 studenten worden er 5 verschillende applicaties gemaakt, met een 6de als demo-onderdeel voor de docenten.
+
+Per onderdeel worden er 3 dingen beoordeeld: 
+*	De kennis die spreekt uit (delen van) het product, en de bijbehorende review.
+*	De kennis die spreekt uit de analyse van code 
+*	Een theorietoets.
+
+Per deelapplicatie volgt een korte beschrijving, alsmede een suggestie wat je zou kunnen bouwen. Het belangrijkste is dat elke student code oplevert waarmee diens kennis van de leeruikomsten Gedistribueerde Systemen en Gedreven Ontwerpen vastgesteld kan worden. Hierbij is het zelf ontdekken van de benodigde functionaliteiten niet verplicht, maar als je zelf inspiratie hebt willen we dat zeker niet in de weg staan!
+
+Kortom, het beste is om de startup-geest te omarmen en je eigen pad in te slaan, maar we willen best helpen meedenken. (de achterliggende reden is dat sommige projecten ook best veel van deze creativiteit vragen, en dan hebben we liever dat je die energie daar besteed)
+
+== Verhaal
+In 1969 landen we voor het eerst op de maan. In 2007 kon je met Google Streetview (bijna) overal ter wereld een poppetje op een kaart zetten en om je heen kijken. In 2023 kun je niet met meer dan 35 mensen tegelijk een ruimte aanvragen bij de HU.
+
+https://youtu.be/l3XwpSKqNZw?t=1393
+https://www.google.com/maps/@-64.6808111,-62.6191503,3a,75y,294.69h,81.05t/data=!3m6!1e1!3m4!1sOAOaRPdKowDohweo0tZLEQ!2e0!7i13312!8i6656?entry=ttu
+https://www.ruimtereserveren.hu.nl/
+
+Kortom, ICT in het onderwijs is ...not great. Een buitenkans voor een aantal startups om eens goed geld te gaan verdienen. 
+
+In deze opdracht gaan we ongeveer 5-10 jaar van zo’n startup doorlopen in 6 maanden. Hiervoor wordt je verzocht voor je team de startup-sheet in te vullen (en een vleugje dubbele administratie in Canvas en Github-Classrooms).
+
+De sheet bestaat uit wat administratieve informatie, en wat creatieve achtergrond. Door ook ‘de rest van het bedrijfje’ te verzinnen schep je een context die je beslissingen qua architectuur wat input kan geven, en zorg je er voor dat jouw oplossing niet automatisch ook geschikt is voor een ander team. 
+
+In de eerste fase stelt elk team een klein bedrijfje voor. Elk teamlid is één van de founders (of één van de eerste hires) en bouwen we een monolitische applicatie als diepteprototype. 
+
+Uiteraard werken er nog meer mensen bij het bedrijfje, maar die laten we een beetje op de achtergrond. Natuurlijk helpt of hindert de kwaliteit van hun werk, zoals aangegeven op de startup-sheets.
+
+Aan het eind van deze eerste fase, slechts twee weken in echte tijd, maar zeg een jaar of twee in het verhaal, is er een (deel van een) rechttoe-rechtaan BEP2 applicatie gebouwd voor het gekozen deelgebied. 
+
+Deze applicatie wordt een enorm succes! En je bedrijf gaat groeien! 
+In hoog tempo worden er allemaal mensen aangenomen, en nu stelt elk teamlid ineens een volledige IT-afdeling voor! Om met deze grotere organisatie om te gaan wordt de monoliet gesplitst in 1 service per afdeling(=student). 
+
+Uiteraard kun je niet als 1 persoon het werk van een hele afdeling doen, dus je hoeft zeker niet een volledige applicatie uit te werken, maar net genoeg om je kennis van gedistribueerde systemen goed te kunnen etaleren.
+
+Jaren gaan voorbij, maar het is een harde wereld, en niet alle bedrijven overleven het. Vaak worden bedrijven dan overgekocht door grotere bedrijven, en moeten de onderlinge systemen samengevoegd worden.
+
+In de derde fase voegen we de verschillende bedrijven samen tot twee, met elk alle mogelijke deelopdrachten erin verwerkt. Het is nu zaak om per bedrijf één groot systeem op te leveren dat de functionaliteiten van alle onderdelen op een consistente, overzichtelijke en gebruikersvriendelijke manier combineert.
+
+Tot slot, de arbeidsmarkt is fluïde. Dus het is (in overleg) toegestaan om met een andere student van team te ruilen. Probeer dat rond de fase-wisselingen te plannen.
+
+== Techniek
+Tijdens de lessen en exercises gebruiken we één standaard tech-stack:
+
+*	Java (17, LTS)
+*	Spring (non-reactive)
+*	PostGres
+*	MongoDB, Redis, Neo4J, Scylla
+*	RabbitMQ
+
+In overleg is het mogelijk om andere talen, technieken en frameworks te gebruiken. In het verleden hebben studenten de opdrachten ook prima kunnen doen met Python/Flask, Kotlin/Spring, Typescript/NestJs en C#/.NET-Core. Dit vereist uiteraard wel een stukje extra zelfstudie. 
+
+Tot nu toe ging het om 2-3 studenten per semester, op een groep van 30-60 studenten, dus voel je ook vooral niet verplicht. Het is wel een relatief snelle manier om ‘boven niveau’-punten te scoren.
+
+Wil je een andere taal/framework gebruiken, start het overleg op tijd, want zowel een docent als (minstens) één medestudent moet tijd/zin hebben zich in die taal/framework combinatie te verdiepen. En er zijn grenzen hoeveel nieuwe dingen we als docent per blok kunnen/willen leren.
+
+== Deelopdrachten
+
+
+=== Algemeen Template
+
+Elke deelopdracht heeft een iets ander smaakje qua achtergrond, maar in de basis moet er overal 'ongeveer hetzelfde' gebeuren.
+
+Het staat je vrij (en wordt zelfs mild aangemoedigd) om zelf je eigen opdracht samen te stellen, of om de bestaande opdrachten een beetje te tweaken. Dan is het handig om een beetje te weten waar je aan moet voldoen.
+
+Vandaar hier een soort abstract template aan welke eisen zo'n aanpassing moet blijven voldoen om alle gewenste leeruitkomsten te dekken.
+
+==== Sprint 1 - Monoliet & DDD
+
+In de monoliet fase bestaat je applicatie uit één proces.
+In deze fase maak je per student minstens één _aggregate_ die uit meerdere _entities_ en _value objects_ moet bestaan.
+Met deze _aggregate_ moet het mogelijk zijn om een non-triviale usecase, uitgedrukt in de _Ubiquitous language_ uit te voeren.
+
+De service is aan te spreken via een standaard REST-interface, en bevat een redelijke scheiding van lagen en/of componenten.
+
+Voor de meest tricky usecase moet je een Integratie-test schrijven, en voor de non-triviale usecase zijn dekkende (succes/faal-scenarios) unit-tests geschreven.
+
+Als ontwerp lever je een domeinmodel aan, en geef je met _Attribute Driven Design Drivers_ aan waar je aandacht aan hebt besteed.
+
+==== Sprint 2 - RPC
+
+In deze fase splitsen we de applicatie in meerdere delen. Per student is er één afzonderlijke service, en voor elke relevante actor in het systeem is er sprake van _Distribution Transparancy_ (bijv. met een facade/gateway, of omdat er een logische service per actor is).
+
+De services communiceren via een RPC-protocol (zoals REST, GRPC, of iets anders), en de exacte parameters van deze communicatie zijn netjes configureerbaar gemaakt (bijv. in de application.properties).
+
+Voor elke service is er een call naar de andere servicesfootnote:[Deze bidirectionele links wil je in het echt zoveel mogelijk voorkomen, maar het zorgt voor een interessantere oefening. Hier doen we dus bewust 'een beetje moeilijk'.].
+
+Als ontwerp lever je een logisch componentenmodel aan. En geef je met een sequence diagram een *duidelijk* overzicht hoe de RPC communicatie verloopt. Hiervoor zul je goed moeten nadenken hoeveel diagrammen je maakt, en wat voor informatie je weg laat.
+
+Kies indien nodig nieuwe _ADD_ drivers en ligt toe wat voor invloed deze drivers op je ontwerp hebben gehad.
+
+==== Sprint 3 - Messaging
+
+Het vele gebruik van RPC zorgt voor een uiterst breekbaar systeem. In deze sprint willen we dat met behulp van Messaging verbeteren. Als een service offline is heeft dat nu veel effect op alle omringende services. Door middel van caching kunnen we dit probleem verkleinen, maar dan krijgen we er een nieuw probleem bij: namelijk dat van data-consistentie.
+
+In deze sprint willen we goed kijken welke verbinden we via RPC willen laten blijven lopen (if any), en welke beter te realiseren zijn door middel van messaging. Welke data gaan we extra bijhouden? En hoe kunnen we messaging gebruiken om deze data 'zo vers mogelijk' te houden?
+
+Als ontwerp lever je nieuwe sequence diagrams aan, die aangeven hoe de communicatie nu verloopt. De belangrijkste verschillen tov. van vorige sprint licht je toe.
+
+Kies indien nodig nieuwe _ADD_ drivers en ligt toe wat voor invloed deze drivers op je ontwerp hebben gehad.
+
+==== Spring 4 - NoSQL
+
+Iedere student kiest een NoSQL database, en vervangt de persistentie door de gekozen NoSQL database. Probeer een database te kiezen die geschikt is voor het soort problemen dat jouw service oplost:
+
+* Redis - Slim cachen van data (meestal niet geschikt als vervanging van RDBMS)
+* Mongo - Diep geneste structuren makkelijk kunnen opslaan
+* Neo4J - Kortste pad en loop-detectie
+* Scylla - Heul, heul veul inserts
+
+Hierbij is het van belang om goed na te denken over de invloeden dit dit op je datamodel zal hebben.
+
+Als ontwerp lever je een overzicht van je relationele in vergelijking tot je noSQL datamodel aan. Dit kan bijv. met een class-diagram, of met een database-specifieke manier van weergeven (voorbeeld-JSON, Neo-screenshots, etc.)
+
+==== Sprint 5 - Microservices
+
+In deze fase is het systeem een stuk groter geworden, en komen we een belangrijke eigenschap van grotere ICT systemen tegen: ze gaan nooit helemaal uit.
+
+
+
+Als ontwerp lever je een Context Map aan, en leg je uit hoe jouw primaire usecase door het systeem heen loopt.
+
+==== Sprint 6 - CQRS & Eventsourcing
+
+CQRS & Eventsourcing
+
+==== Sprint 7 - Uitloop
+
+Uitloop
+
+
+
+include::./deelopdrachten/canvas.adoc[]
+include::./deelopdrachten/osiris.adoc[]
+include::./deelopdrachten/youforce.adoc[]
+include::./deelopdrachten/onstage.adoc[]
+include::./deelopdrachten/testvision.adoc[]
+// include::./deelopdrachten/mijnrooster.adoc[]
+// include::./deelopdrachten/holistiq.adoc[]
