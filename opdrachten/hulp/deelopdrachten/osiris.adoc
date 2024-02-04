@@ -1,12 +1,23 @@
 === Osiris
 Osiris is het SIS (student-informatie-systeem) van de HU. Het is de system-of-record voor welke studenten ingeschreven staan en wat voor resultaten ze behaald hebben. 
 Een paar ideeën over in wat voor stukken je het systeem zou kunnen snijden:
+
 *	Studenten in/uitschrijven (met allerhande regeltjes). Denk hierbij aan vooropleiding, BSAs, herkomst. Bij uitschrijving kan er misschieen een deelgraad (propedeuse, bachelor, minor, etc.) behaald worden. Een decaan kan voor sommige vereisten juist weer vrijstellingen verlenen.
 *	Vakken beheren, en hoe de cijfers opgebouwd zijn (toetsen, herkansingen, vervangende opdrachten etc.)
-o	Per jaar kunnen er uiteraard andere regels gelden, maar standaard is het ‘hetzelfde als vorig jaar’
+	Per jaar kunnen er uiteraard andere regels gelden, maar standaard is het ‘hetzelfde als vorig jaar’
 *	Opleidingen beheren, en welke vakken er nodig zijn om het te halen (vervangingen, bezemvakken, vrijstellingen etc.). 
+
 Rode draad:
 Een student die zich in kan schrijven, vakken kan behalen, en z’n opleiding kan afronden. Niet alles gaat in één keer goed, en bij een vak moeten er een jaar later ineens andere toetsvormen gebruikt worden. Een ander vak wordt ineens niet meer gegeven en dient vervangen te worden door een toegestaan vervangend vak. 
 Complicaties zitten rond het verwijderen van vakken, updaten van studenten en dat soort zaken.
 
 
+==== Microservices fase
+
+In de microservices fase zijn er de volgende integraties te realiseren:
+
+* Osiris is leidend welke cursussen en studenten er bestaan (voor alle andere services)
+* Canvas kan Osiris vertellen welke vakken behaald zijn
+* Onstage kan Osiris vertellen of een 'stage-cursus' behaald is
+* TestVision kan Osiris vertellen of een bepaalde toets gehaald is
+* Youforce kan Osiris vertellen welke docenten en decanen er zijn die van dit systeem gebruik mogen maken

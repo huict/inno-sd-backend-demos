@@ -1,10 +1,18 @@
 === TestVision
 
 Een paar ideeën over in wat voor stukken je het systeem zou kunnen snijden:
+
 *	Beheren vragen & toetsen. Je wilt een vragenbank hebben, en uit die vragen toetsen kunnen samenstellen. Een vraag heeft een bepaald gewicht, is dat afhankelijk per toets? Wellicht kun je vragen taggen, en dan een gewenste toetssamenstelling specificeren? (“Zoveel % moeilijke vragen” en “zoveel % over Software Architecture”, wellicht kun je die specs zelfs combineren?)
 *	Beheren afnames & reviews. Toetsen hebben officieel een 4-ogen principe, en een ingezette toets moet van tevoren, maar ook achteraf gereviewed kunnen worden door een andere docent en die moet dan natuurlijk meningen kunnen achterlaten op wat er gezien is (zowel op de vragen als de behaalde resultaten). Uiteraard moet een afname op een datum klaargezet kunnen worden voor een selecte groep studenten. 
 *	Beheren vakken/studenten/etc. Studenten, vakken, toetsen en hun onderlinge relaties moeten beheerd kunnen worden. Een student mag zich bijv. niet aanmelden voor een toets als er geen inschrijving is voor het vak. Sommige vakken hebben toetsen die je zo vaak als je wilt kan proberen, bij weer andere vakken moet je een minimumcijfer hebben behaald bij de originele toets om de herkansing te mogen maken (ooit, of in hetzelfde jaar).
+
 Toetsen worden ingepland qua afname en studenten (zonder inhoud). Vragen zijn bevroren zodra ze aan een toets zijn gekoppeld, die aan een afname is gekoppeld.
-Bij wijzigingen stuff synchroniseren.
 
+==== Microservices Fase
 
+In de microservices fase zijn er de volgende integraties te realiseren:
+
+* Resultaten uit Testvision dienen automatisch gecommuniceerd te worden richting Canvas & Osiris
+* Osiris is leidend welke student aan welke toets mag deelnemen.
+* Onstage kan formatieve 'toetsen' klaarzetten in TestVision. Dit zijn eigenlijk gewoon enquetes. Maar ze willen wel een update zodra de 'toets' gemaakt is.
+* Youforce misbruikt TestVision op dezelfde manier, voor werknemerstevredenheid-onderzoeken.

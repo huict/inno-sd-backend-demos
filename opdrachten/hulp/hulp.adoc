@@ -73,18 +73,18 @@ Tot nu toe ging het om 2-3 studenten per semester, op een groep van 30-60 studen
 
 Wil je een andere taal/framework gebruiken, start het overleg op tijd, want zowel een docent als (minstens) één medestudent moet tijd/zin hebben zich in die taal/framework combinatie te verdiepen. En er zijn grenzen hoeveel nieuwe dingen we als docent per blok kunnen/willen leren.
 
-== Deelopdrachten
 
+== Sprintplanning
 
-=== Algemeen Template
+Elke deelopdracht heeft een iets ander smaakje qua achtergrond, maar in de basis moet er overal 'ongeveer hetzelfde' gebeuren. Om het geheel een beetje te structureren is er een onderverdeling in _sprints_ gemaakt, zodat je elke keer thematisch met een enigszins afgekaderd ding bezig bent.
 
-Elke deelopdracht heeft een iets ander smaakje qua achtergrond, maar in de basis moet er overal 'ongeveer hetzelfde' gebeuren.
+Het staat je vrij (en wordt zelfs mild aangemoedigd) om zelf je eigen opdracht samen te stellen, of om de bestaande opdrachten een beetje te tweaken. Dan is het hoe dan ook handig om een beetje te weten waar je aan moet voldoen. Vandaar dat we eerst een soort abstract template bespreken met daarin uitgelegd aan welke eisen elke sprint inhoudelijk moet voldoen.
 
-Het staat je vrij (en wordt zelfs mild aangemoedigd) om zelf je eigen opdracht samen te stellen, of om de bestaande opdrachten een beetje te tweaken. Dan is het handig om een beetje te weten waar je aan moet voldoen.
+In elke sprint vragen we je een stukje te bouwen, en een stukje te documenteren. In de documentatie ligt je toe *wat* je gebouwd hebt, maar ook *waarom*. Het doelpubliek van zulke documentatie zijn medestudenten en denkbeeldige collegas binnen je bedrijf. Dat betekent dat het duidelijk genoeg moet zijn dat je de tijd van je collega's niet verspilt, maar ook dat je niet uuuuren van de baas moet verspillen aan de meest prachtige diagrammen (iets wat bijv. voor een extern whitepaper wel gewenst zou zijn). 
 
-Vandaar hier een soort abstract template aan welke eisen zo'n aanpassing moet blijven voldoen om alle gewenste leeruitkomsten te dekken.
+Praktisch gezien zou ik adviseren om fotos van tekeningen van diagrammen in te leveren, tenzij je zo geoefend bent met diagram-software dat het 'ongeveer even lang duurt' (ik ben altijd uuuuren langer bezig met dat soort software). Ten tweede zou ik willen adviseren om in je documentatie fouten te durven maken. De kennisdoelen van de cursus moeten aan het eind bereikt zijn, en proberen elke sprint te reverse-engineeren wat wij als docenten willen horenfootnote:[Als je goed kan beargumenteren waarom je de principes van deze cursus stom vindt is het prima mogelijk de cursus te halen. We willen dat je de principes begrijpt en er een gefundeerde mening over kan vormen. Wat die mening uiteindelijk wordt is aan jou. ICT is een groot vakgebied, en voor _bijna_ elke mening is een plek.], in plaats van gewoon te vertellen wat je denkt is mogelijk erg tijdrovend.
 
-==== Sprint 1 - Monoliet & DDD
+=== Sprint 1 - Monoliet & DDD
 
 In de monoliet fase bestaat je applicatie uit één proces.
 In deze fase maak je per student minstens één _aggregate_ die uit meerdere _entities_ en _value objects_ moet bestaan.
@@ -94,9 +94,9 @@ De service is aan te spreken via een standaard REST-interface, en bevat een rede
 
 Voor de meest tricky usecase moet je een Integratie-test schrijven, en voor de non-triviale usecase zijn dekkende (succes/faal-scenarios) unit-tests geschreven.
 
-Als ontwerp lever je een domeinmodel aan, en geef je met _Attribute Driven Design Drivers_ aan waar je aandacht aan hebt besteed.
+Als ontwerp lever je een domeinmodel aan (bijv. met een UML class diagram), en geef je aan de hand van _Attribute Driven Design Drivers_ aan waar je aandacht aan hebt besteed (en waar niet). 
 
-==== Sprint 2 - RPC
+=== Sprint 2 - RPC
 
 In deze fase splitsen we de applicatie in meerdere delen. Per student is er één afzonderlijke service, en voor elke relevante actor in het systeem is er sprake van _Distribution Transparancy_ (bijv. met een facade/gateway, of omdat er een logische service per actor is).
 
@@ -104,50 +104,61 @@ De services communiceren via een RPC-protocol (zoals REST, GRPC, of iets anders)
 
 Voor elke service is er een call naar de andere servicesfootnote:[Deze bidirectionele links wil je in het echt zoveel mogelijk voorkomen, maar het zorgt voor een interessantere oefening. Hier doen we dus bewust 'een beetje moeilijk'.].
 
-Als ontwerp lever je een logisch componentenmodel aan. En geef je met een sequence diagram een *duidelijk* overzicht hoe de RPC communicatie verloopt. Hiervoor zul je goed moeten nadenken hoeveel diagrammen je maakt, en wat voor informatie je weg laat.
+Als ontwerp lever je een overzicht van je applicatie (bijv. met een logisch componentenmodel) en geef je een *duidelijk* overzicht hoe de RPC communicatie verloopt (bijv. met een sequence diagram). Hiervoor zul je goed moeten nadenken hoeveel diagrammen je maakt, en wat voor informatie je weg laat.
 
 Kies indien nodig nieuwe _ADD_ drivers en ligt toe wat voor invloed deze drivers op je ontwerp hebben gehad.
 
-==== Sprint 3 - Messaging
+=== Sprint 3 - Messaging
 
 Het vele gebruik van RPC zorgt voor een uiterst breekbaar systeem. In deze sprint willen we dat met behulp van Messaging verbeteren. Als een service offline is heeft dat nu veel effect op alle omringende services. Door middel van caching kunnen we dit probleem verkleinen, maar dan krijgen we er een nieuw probleem bij: namelijk dat van data-consistentie.
 
 In deze sprint willen we goed kijken welke verbinden we via RPC willen laten blijven lopen (if any), en welke beter te realiseren zijn door middel van messaging. Welke data gaan we extra bijhouden? En hoe kunnen we messaging gebruiken om deze data 'zo vers mogelijk' te houden?
 
-Als ontwerp lever je nieuwe sequence diagrams aan, die aangeven hoe de communicatie nu verloopt. De belangrijkste verschillen tov. van vorige sprint licht je toe.
+Als ontwerp lever je nieuwe diagrammen aan, die aangeven hoe de communicatie nu verloopt. De belangrijkste verschillen tov. van vorige sprint licht je toe in de documentatie.
 
 Kies indien nodig nieuwe _ADD_ drivers en ligt toe wat voor invloed deze drivers op je ontwerp hebben gehad.
 
-==== Spring 4 - NoSQL
+=== Spring 4 - NoSQL
 
 Iedere student kiest een NoSQL database, en vervangt de persistentie door de gekozen NoSQL database. Probeer een database te kiezen die geschikt is voor het soort problemen dat jouw service oplost:
 
 * Redis - Slim cachen van data (meestal niet geschikt als vervanging van RDBMS)
 * Mongo - Diep geneste structuren makkelijk kunnen opslaan
-* Neo4J - Kortste pad en loop-detectie
+* Neo4J - Topologische queries op grafen, zoals Kortste pad en loop-detectie
 * Scylla - Heul, heul veul inserts
 
 Hierbij is het van belang om goed na te denken over de invloeden dit dit op je datamodel zal hebben.
 
 Als ontwerp lever je een overzicht van je relationele in vergelijking tot je noSQL datamodel aan. Dit kan bijv. met een class-diagram, of met een database-specifieke manier van weergeven (voorbeeld-JSON, Neo-screenshots, etc.)
 
-==== Sprint 5 - Microservices
+=== Sprint 5 - Microservices
 
-In deze fase is het systeem een stuk groter geworden, en komen we een belangrijke eigenschap van grotere ICT systemen tegen: ze gaan nooit helemaal uit.
+In deze fase is het systeem een stuk groter geworden, en komen we een belangrijke eigenschap van grotere ICT systemen tegen: ze gaan nooit helemaal uit. De doelen van deze sprint zijn dus:
+
+* Sluit extra services aan
+* Bedenk een plan om updates aan het systeem uit te kunnen voeren met zo min mogelijk ongemak voor de gebruikers
+
+Als ontwerp lever je een Context Map aan, en leg je uit welke extra services je hebt gekoppeld. Ook leg je uit hoe je updates aan jouw services kan uitvoeren en hoe je er voor hebt gezorgd dat andere services hier zo min mogelijk last van ondervinden.
+(het is toegestaan één laatste grote brekende update uit te voeren voordat je dit plan uitlegt, leg dan ook uit welke changes nodig waren)
+
+=== Sprint 6 - CQRS & Eventsourcing
+
+In deze sprint willen we de coupling-eigenschappen van integration events nog een keer extra onder de aandacht brengen, en ze (een beetje) onderscheiden van domain events. Dus de doelen voor deze sprint zijn:
+
+* Het gebruik van Topics (één-op-meer-messaging) om informatie in het systeem te delen
+* Het gebruik van Event-Sourcing voor één van je aggregates
+
+Als ontwerp lever je documentatie aan met daarin een goed overzicht (bijv. met een Sequence Diagram) waarin je de flow van integratie-events verduidelijkt.
+
+=== Sprint 7 - Uitloop
+
+Uitloop. Goede kans dat niet elke sprint helemaal lekker liep, dus hier kun je vrij focussen om één van de eerdere sprints te verbeteren.
 
 
 
-Als ontwerp lever je een Context Map aan, en leg je uit hoe jouw primaire usecase door het systeem heen loopt.
+== Deelopdrachten
 
-==== Sprint 6 - CQRS & Eventsourcing
-
-CQRS & Eventsourcing
-
-==== Sprint 7 - Uitloop
-
-Uitloop
-
-
+Hier volgt per deelopdracht een bescrijving van de achtergrond en een *suggestie* hoe die per sprint in te vullen.
 
 include::./deelopdrachten/canvas.adoc[]
 include::./deelopdrachten/osiris.adoc[]

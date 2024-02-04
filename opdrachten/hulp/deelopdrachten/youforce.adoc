@@ -9,3 +9,12 @@ Rode draad:
 Een docent gaat bij de HU in dienst, en wordt bij meerdere opleidingen ingezet. Voor een bepaald jaar zijn er wel/niet genoeg docenten. Vervolgens moet alles automatisch geupdate’d worden als er docenten/zzpers bijkomen, of taken veranderen.
 
 
+==== Microservices fase
+
+In de microservices fase zijn er de volgende integraties te realiseren:
+
+* Youforce is leidend welke docenten er beschikbaar zijn voor welke vakken, in welke periodes, voor alle andere services
+* Youforce misbruikt toetsen uit Testvision voor werknemerstevredenheid-onderzoeken
+* Osiris is leidend welke vakken er zijn in welke periode om op in te plannen
+* In Canvas is er (minstens één) cursus die afgerond moet zijn voordat de werknemer op andere zaken ingezet kan worden (de werknemers-oriëntatie-cursus waarin de basis van lesgeven wordt doorlopen)
+* Docenten kunnen gekoppeld worden aan bepaalde bedrijven in Onstage, vaak betekent dat dat de docent ook op een andere wijze (ZZP? Oud-dienstverband?) bij de opdrachtgever betrokken is
