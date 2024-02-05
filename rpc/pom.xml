@@ -1,7 +1,7 @@
 <project>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>nl.tomkemper.bep3</groupId>
+    <groupId>nl.hu.ict.inno</groupId>
     <artifactId>rpc-parent</artifactId>
     <version>1</version>
     <packaging>pom</packaging>

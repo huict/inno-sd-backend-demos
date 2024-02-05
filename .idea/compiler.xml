@@ -6,22 +6,31 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="versioning" />
+        <module name="cloudconfig" />
         <module name="messaging-patterns-producer" />
         <module name="kanyerustiger" />
+        <module name="badaggregate" />
         <module name="fallacies" />
-        <module name="hello-pg" />
-        <module name="dddexamples" />
+        <module name="cloudgateway" />
         <module name="usessoap-service" />
+        <module name="common" />
+        <module name="clouddiscovery" />
+        <module name="democlient" />
+        <module name="streaming-common" />
         <module name="hellogrpc-contract" />
         <module name="hello-neo" />
         <module name="basicboot" />
         <module name="hellogateways-courses" />
-        <module name="whutsupp" />
         <module name="hellogateways-students" />
         <module name="dddexamples (1)" />
+        <module name="streaming-producer" />
         <module name="reqack" />
         <module name="hello-mongo" />
+        <module name="twophasecommitexample" />
+        <module name="service2" />
         <module name="hellogrpc-server" />
+        <module name="service1" />
         <module name="hellographql-server" />
         <module name="messaging-patterns-consumer" />
         <module name="hellogateways-gateway" />
@@ -31,16 +40,28 @@
         <module name="socketsdemo" />
         <module name="usessoap-client" />
         <module name="hello-eventsourcing" />
+        <module name="streaming-consumer" />
         <module name="clientsdatarest" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="dddexamples" target="17" />
+      <module name="hello-pg" target="17" />
+      <module name="whutsupp" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="badaggregate" options="-parameters" />
       <module name="basicboot" options="-parameters" />
       <module name="clientsdatarest" options="-parameters" />
+      <module name="cloudconfig" options="-parameters" />
+      <module name="clouddiscovery" options="-parameters" />
+      <module name="cloudgateway" options="-parameters" />
+      <module name="common" options="-parameters" />
       <module name="dddexamples" options="-parameters" />
       <module name="dddexamples (1)" options="-parameters" />
+      <module name="democlient" options="-parameters" />
       <module name="fallacies" options="-parameters" />
       <module name="hello-eventsourcing" options="-parameters" />
       <module name="hello-mongo" options="-parameters" />
@@ -59,9 +80,16 @@
       <module name="messaging-patterns-consumer" options="-parameters" />
       <module name="messaging-patterns-producer" options="-parameters" />
       <module name="reqack" options="-parameters" />
+      <module name="service1" options="-parameters" />
+      <module name="service2" options="-parameters" />
       <module name="socketsdemo" options="-parameters" />
+      <module name="streaming-common" options="-parameters" />
+      <module name="streaming-consumer" options="-parameters" />
+      <module name="streaming-producer" options="-parameters" />
+      <module name="twophasecommitexample" options="-parameters" />
       <module name="usessoap-client" options="-parameters" />
       <module name="usessoap-service" options="-parameters" />
+      <module name="versioning" options="-parameters" />
       <module name="whutsupp" options="-parameters" />
     </option>
   </component>

@@ -11,13 +11,25 @@
     <file url="file://$PROJECT_DIR$/messaging/messaging-patterns-producer/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/messaging/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/messaging/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/messaging/twophasecommitexample/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/messaging/whutsupp/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/microservices/cloudconfig/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/microservices/clouddiscovery/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/microservices/cloudgateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/microservices/common/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/microservices/democlient/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/microservices/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/microservices/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/nosql/badaggregate/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/nosql/hello-mongo/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/nosql/hello-neo/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/nosql/hello-pg/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/nosql/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/nosql/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/observability/service1/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/observability/service2/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/observability/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/observability/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/rpc/ReqAck/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/rpc/clientsdatarest/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/rpc/hellogateways/courses/src/main/java" charset="UTF-8" />
@@ -33,9 +45,17 @@
     <file url="file://$PROJECT_DIR$/rpc/hellogrpc/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/rpc/kanyerustiger/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/rpc/usessoap/client/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/rpc/usessoap/client/target/generated-sources/jaxb" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/rpc/usessoap/service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/rpc/usessoap/service/target/generated-sources/jaxb" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/rpc/usessoap/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/rpc/usessoap/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/rpc/websockets/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/streaming/common/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/streaming/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/streaming/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/streaming/streaming-consumer/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/streaming/streaming-producer/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/versioning/src/main/java" charset="UTF-8" />
   </component>
 </project>

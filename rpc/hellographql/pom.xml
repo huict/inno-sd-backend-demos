@@ -10,7 +10,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>nl.tomkemper</groupId>
+    <groupId>nl.hu.ict.inno</groupId>
     <artifactId>hellographql-server</artifactId>
     <version>1.0-SNAPSHOT</version>
 

@@ -3,7 +3,7 @@ syntax = "proto3";
 package net.devh.boot.grpc.example;
 
 option java_multiple_files = true;
-option java_package = "nl.tomkemper.hellogrpc.gen";
+option java_package = "nl.hu.ict.inno.hellogrpc.gen";
 option java_outer_classname = "HelloWorldProto";
 
 // The greeting service definition.

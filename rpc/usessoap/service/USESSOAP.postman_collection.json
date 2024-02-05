@@ -23,7 +23,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"\r\n                  xmlns:gs=\"http://tomkemper.nl/usessoap/gen\">\r\n    <soapenv:Header/>\r\n    <soapenv:Body>\r\n        <gs:getCountryRequest>\r\n            <gs:name>Spain</gs:name>\r\n        </gs:getCountryRequest>\r\n    </soapenv:Body>\r\n</soapenv:Envelope>",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"\r\n                  xmlns:gs=\"http://inno.ict.hu.nl/usessoap/gen\">\r\n    <soapenv:Header/>\r\n    <soapenv:Body>\r\n        <gs:getCountryRequest>\r\n            <gs:name>Spain</gs:name>\r\n        </gs:getCountryRequest>\r\n    </soapenv:Body>\r\n</soapenv:Envelope>",
 					"options": {
 						"raw": {
 							"language": "xml"

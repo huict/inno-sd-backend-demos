@@ -5,8 +5,8 @@
     <version>1</version>
 
     <parent>
-        <groupId>nl.tomkemper.bep3</groupId>
-        <artifactId>bep3-parent</artifactId>
+        <groupId>nl.hu.ict.inno</groupId>
+        <artifactId>messaging-demos-parent</artifactId>
         <version>1</version>
     </parent>
 

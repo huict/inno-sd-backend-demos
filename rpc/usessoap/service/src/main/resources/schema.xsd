@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://tomkemper.nl/usessoap/gen"
-           targetNamespace="http://tomkemper.nl/usessoap/gen" elementFormDefault="qualified">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://inno.ict.hu.nl/usessoap/gen"
+           targetNamespace="http://inno.ict.hu.nl/usessoap/gen" elementFormDefault="qualified">
 
     <xs:element name="getCountryRequest">
         <xs:complexType>

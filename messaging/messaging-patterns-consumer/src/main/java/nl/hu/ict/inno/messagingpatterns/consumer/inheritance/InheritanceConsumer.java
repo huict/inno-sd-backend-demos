@@ -1,0 +1,12 @@
+package nl.hu.ict.inno.messagingpatterns.consumer.inheritance;
+
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.stereotype.Component;
+
+@Component
+public class InheritanceConsumer {
+    @RabbitListener(queues = {"inheritance-example"})
+    public void handleEvent(Event e){
+        e.print();
+    }
+}

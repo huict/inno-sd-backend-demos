@@ -14,7 +14,7 @@
         <module>client</module>
         <module>server</module>
     </modules>
-    <groupId>nl.tomkemper</groupId>
+    <groupId>nl.hu.ict.inno</groupId>
     <artifactId>hellogrpc-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>hellogrpc</name>
