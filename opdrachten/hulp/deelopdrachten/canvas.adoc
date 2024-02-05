@@ -21,36 +21,14 @@ Cursusverloop houdt zich bezich met een cursus die daadwerkelijk gegeven wordt. 
 Rode draad:
 Een template voor een vak (modules/lessen) wordt aangemaakt. Dat template wordt geïnstantieerd en studenten kunnen zich er voor inschrijven. Docenten kunnen gekoppeld worden. Vervolgens kunnen die studenten opdrachten inleveren waar de docent een cijfer aan kan toekennen.
 
-==== Sprint 2 RPC
-
-In deze sprint blijft de functionaliteit grotendeels hetzelfde, maar moet de applicatie in losse onderdelen opgebroken worden. Het is netjes om er een vierde applicatie naast te zetten, de gateway, die er voor zorgt dat het nog allemaal één applicatie lijkt.
-
-Voorheen had je directe links tussen bijv. een cursus en diens template. Omdat die zaken nu in verschillende services zitten zul je met verwijzingen (door middel van ids) moeten werken. Het is verstandig om er voor te zorgen dat die ids enigszins menselijk leesbaar blijven. Dus liever een cursuscode of emailadres dan een GUID of arbitraire Long als Id (maar soms kun je niet anders).
-
-==== Sprint 3 Messaging
-
-Het doel van deze sprint is zorgen dat de primaire usecases door kunnen gaan terwijl een zo groot mogelijk deel van het systeem offline is.
-
-* Inleveren en beoordelen student-werk
-* Verplaatsen / Vervangen / Annuleren van lessen (vanuit de coördinator)
-* Vernieuwen en verbeteren van materiaal
-
-Dit betekent niet dat al deze zaken het altijd moeten doen, maar dat ze moeten blijven functioneren, ook als alle andere services down zijn. Het is goed mogelijk dat je 100% van de communicatie door messaging kan vervangen.
-
-==== Sprint 4 NoSQL
-
-Er zijn bij deze opdracht geen bijzonderheden qua NoSQL keuze. Alle opties zijn redelijk te verdedigen onder verschillende omstandigheden.
-
-==== Sprint 5 Microservices
+==== Microservices fase
 
 Te realiseren integraties:
 
-* Osiris is nu leidend in welke cursussen er gegeven moeten worden. Het is wel mogelijk om een cursus te ontwerpen zonder dat er een Osiris-entry is. (Uitzondering: Canvas wordt ook stiekem gebruikt voor een werknemer-cursus, resultaten daarvan moeten gecommuniceerd worden met Youforce, en hier zijn dus de docenten juist de studenten)
+* Osiris is nu leidend in welke cursussen er gegeven moeten worden. Het is wel mogelijk om een cursus te ontwerpen zonder dat er een Osiris-entry is. (Uitzondering: Canvas wordt ook stiekem gebruikt voor een docenten-cursus, resultaten daarvan moeten gecommuniceerd worden met Youforce, en hier zijn dus de docenten juist de studenten)
 * Osiris is leidend welke studenten welke cursus volgen.
 * Canvas is leidend of een cursus behaald is. Als een student volgens Canvas de cursus behaald heeft, dan dient Osiris op de hoogte gesteld te zijn, en moeten de resultaten ingevuld worden.
 * Youforce is nu leidend welke docenten er op cursussen ingezet kunnen worden.
 * Een opdracht in Canvas kan aan een toets in TestVision gekoppeld worden. Dat betekent dat een resultaat uit TestVision automatisch in Canvas terecht komt (en vaak ook automatisch in Osiris).
 * Stages uit Onstage vallen binnen een Canvas-cursus (voor aankondigingen, materiaal, etc.). De beoordeling van de stage kan aan een Canvas-opdracht gekoppeld worden, en zo kan een beoordeling uit Onstage automatisch terecht komen in Canvas (en vaak ook automatisch in Osiris).
-
-==== Sprint 6 Event Sourcing & CQRS
 

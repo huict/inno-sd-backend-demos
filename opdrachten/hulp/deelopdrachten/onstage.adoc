@@ -18,3 +18,4 @@ In de microservices fase zijn er de volgende integraties te realiseren:
 * Osiris is leidend over welke studenten op stage mogen.
 * Youforce is leidend over welke docentbegeleiders er beschikbaar zijn.
 * Een stage-evaluatie formulier kan ingevuld worden via een "toets" op Testvision (we misbruiken TestVision hier als een enquete-tool)
+

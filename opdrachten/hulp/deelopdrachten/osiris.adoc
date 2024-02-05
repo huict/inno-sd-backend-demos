@@ -21,3 +21,4 @@ In de microservices fase zijn er de volgende integraties te realiseren:
 * Onstage kan Osiris vertellen of een 'stage-cursus' behaald is
 * TestVision kan Osiris vertellen of een bepaalde toets gehaald is
 * Youforce kan Osiris vertellen welke docenten en decanen er zijn die van dit systeem gebruik mogen maken
+

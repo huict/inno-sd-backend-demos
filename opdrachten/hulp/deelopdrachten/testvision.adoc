@@ -16,3 +16,4 @@ In de microservices fase zijn er de volgende integraties te realiseren:
 * Osiris is leidend welke student aan welke toets mag deelnemen.
 * Onstage kan formatieve 'toetsen' klaarzetten in TestVision. Dit zijn eigenlijk gewoon enquetes. Maar ze willen wel een update zodra de 'toets' gemaakt is.
 * Youforce misbruikt TestVision op dezelfde manier, voor werknemerstevredenheid-onderzoeken.
+
