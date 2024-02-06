@@ -1,0 +1,13 @@
+
+.idea/codeStyles/Project.xml
+.idea/compiler.xml
+.idea/encodings.xml
+.idea/jpa-buddy.xml
+.idea/misc.xml
+.idea/scala_settings.xml
+*.xml
+*.txt
+*.class
+*.lst
+*.dump
+*.xml
