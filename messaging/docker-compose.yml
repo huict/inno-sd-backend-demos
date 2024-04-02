@@ -8,4 +8,11 @@ services:
       - "15672:15672"
     environment:
       RABBITMQ_NODENAME: bep3-rabbitmq-node
-
+  postgres:
+    image: "postgres"
+    ports:
+      - "15432:5432"
+    volumes:
+      - "./development/db:/docker-entrypoint-initdb.d"
+    environment:
+      - "POSTGRES_PASSWORD=1q2w3e!"
