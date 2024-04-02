@@ -1,0 +1,30 @@
+version: "3.9"
+services:
+    rabbit1:
+        hostname: rabbit1
+        build: .
+        ports:
+            - "5672:5672"
+            - "15672:15672"
+        environment:
+            RABBITMQ_NODENAME: rabbit1
+    rabbit2:
+        hostname: rabbit2
+        build: .
+        depends_on:
+            - rabbit1
+        ports:
+            - "5673:5672"
+            - "15673:15672"
+        environment:
+            RABBITMQ_NODENAME: rabbit2
+    rabbit3:
+        hostname: rabbit3
+        build: .
+        depends_on:
+            - rabbit1
+        ports:
+            - "5674:5672"
+            - "15674:15672"
+        environment:
+            RABBITMQ_NODENAME: rabbit3
