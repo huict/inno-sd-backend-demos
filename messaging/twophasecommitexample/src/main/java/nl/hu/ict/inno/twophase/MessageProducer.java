@@ -2,6 +2,7 @@ package nl.hu.ict.inno.twophase;
 
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,6 +13,7 @@ import javax.persistence.EntityManager;
 public class MessageProducer {
 
     @Autowired
+    @Qualifier("pg1")
     private EntityManager entities;
 
     @Autowired
