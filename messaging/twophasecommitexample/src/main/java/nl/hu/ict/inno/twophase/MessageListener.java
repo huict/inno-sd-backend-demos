@@ -9,8 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 //
-//@Component
-//@Transactional
+@Component
+@Transactional
 public class MessageListener {
 
     @Autowired
@@ -24,9 +24,8 @@ public class MessageListener {
     @RabbitListener(queues = {"twophasemessages"})
     public void receiveMessage(MessageContract m) {
         System.out.println("Received " + m.getValue());
-        MessageEntity message = new MessageEntity("Received " + m.getValue());
-        pg1.execute("insert into received_messages(id) values(:id);");
-        pg2.execute("insert into received_messages(id) values(:id);");
+        pg1.update("insert into received_messages(id) values(?);", new Object[]{ m.getId() });
+        pg2.update("insert into received_messages(id) values(?);", new Object[]{ m.getId() });
         System.out.println("Persisted received");
 //        throw new RuntimeException("Error on Receive!");
     }

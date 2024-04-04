@@ -37,10 +37,10 @@ public class MessageProducer {
                 new Object[]{newMessage.getId(), newMessage.getContent()});
 
         System.out.println("Sending");
-        rabbitTemplate.convertAndSend("twophasemessages", new MessageContract(
+        rabbitTemplate.convertAndSend("twophasemessages", new MessageContract(newMessage.getId(),
                 String.format("Sending message %s: %s", newMessage.getId(), newMessage.getContent())));
 
         System.out.println("Sent");
-        throw new RuntimeException("Forced error to check rollback");
+//        throw new RuntimeException("Forced error to check rollback");
     }
 }
