@@ -29,7 +29,7 @@ public class Runner implements CommandLineRunner {
             try{
                 producer.sendMessage("Hello World");
             }catch (Exception ex){
-//                ex.printStackTrace();
+                ex.printStackTrace();
             }finally {
                 System.out.println("Nog een keer? (ja/nee)");
                 String read = s.nextLine();

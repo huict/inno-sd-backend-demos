@@ -6,6 +6,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 
 import javax.persistence.EntityManager;
@@ -22,7 +23,8 @@ public class MultiPostgresConfig {
         return new DataSourceProperties();
     }
 
-    @Bean
+    @Primary //saywhuuut?
+    @Bean(name="pg1DataSource")
     @Qualifier("pg1")
     public DataSource pg1DataSource() {
         return pg1()
@@ -30,6 +32,7 @@ public class MultiPostgresConfig {
                 .build();
     }
 
+    @Primary //saywhuuut?
     @Bean
     @Qualifier("pg1")
     public LocalContainerEntityManagerFactoryBean pg1Factory(
@@ -40,6 +43,7 @@ public class MultiPostgresConfig {
                 .build();
     }
 
+    @Primary //saywhuuut?
     @Bean
     @Qualifier("pg1")
     public EntityManager pg1Manager(@Qualifier("pg1") EntityManagerFactory factory) {
@@ -52,31 +56,31 @@ public class MultiPostgresConfig {
         return new DataSourceProperties();
     }
 
-//    @Bean
-//    @Qualifier("pg2")
-//    public DataSource pg2DataSource() {
-//        return pg2()
-//                .initializeDataSourceBuilder()
-//                .build();
-//    }
-//
-//
-//    @Bean
-//    @Qualifier("pg2")
-//    public LocalContainerEntityManagerFactoryBean pg2Factory(
-//            @Qualifier("pg2") DataSource ds,
-//            EntityManagerFactoryBuilder builder
-//    ) {
-//        return builder.dataSource(ds)
-//                .packages("nl.hu.ict.inno.twophase")
-//                .build();
-//    }
-//
-//    @Bean
-//    @Qualifier("pg2")
-//    public EntityManager pg2Manager(@Qualifier("pg2") EntityManagerFactory factory) {
-//        return factory.createEntityManager();
-//    }
+    @Bean(name="pg2DataSource")
+    @Qualifier("pg2")
+    public DataSource pg2DataSource() {
+        return pg2()
+                .initializeDataSourceBuilder()
+                .build();
+    }
+
+
+    @Bean
+    @Qualifier("pg2")
+    public LocalContainerEntityManagerFactoryBean pg2Factory(
+            @Qualifier("pg2") DataSource ds,
+            EntityManagerFactoryBuilder builder
+    ) {
+        return builder.dataSource(ds)
+                .packages("nl.hu.ict.inno.twophase")
+                .build();
+    }
+
+    @Bean
+    @Qualifier("pg2")
+    public EntityManager pg2Manager(@Qualifier("pg2") EntityManagerFactory factory) {
+        return factory.createEntityManager();
+    }
 
 
 }
