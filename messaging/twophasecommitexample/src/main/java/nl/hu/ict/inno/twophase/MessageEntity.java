@@ -1,22 +1,11 @@
 package nl.hu.ict.inno.twophase;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Version;
 
-@Entity
 public class MessageEntity {
-    @Id
-    @GeneratedValue
     private Long id;
 
     public String content;
 
-    @Version
-    private int version;
-
-    protected MessageEntity() {/*voor Hibernate*/}
 
     public MessageEntity(String content) {
         this.content = content;
@@ -30,7 +19,4 @@ public class MessageEntity {
         return content;
     }
 
-    public int getVersion() {
-        return version;
-    }
 }

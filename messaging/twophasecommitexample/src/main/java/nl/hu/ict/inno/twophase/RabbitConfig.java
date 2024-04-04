@@ -27,6 +27,7 @@ public class RabbitConfig {
 
     @Bean
     public Queue getQueue() {
+        System.out.println("Building queue");
         return QueueBuilder.durable("twophasemessages").build();
     }
 }

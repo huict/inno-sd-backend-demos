@@ -3,25 +3,30 @@ package nl.hu.ict.inno.twophase;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
 import java.io.IOException;
-
-@Component
-@Transactional
+//
+//@Component
+//@Transactional
 public class MessageListener {
 
     @Autowired
     @Qualifier("pg1")
-    private EntityManager entities;
+    private JdbcTemplate pg1;
+
+    @Autowired
+    @Qualifier("pg2")
+    private JdbcTemplate pg2;
 
     @RabbitListener(queues = {"twophasemessages"})
     public void receiveMessage(MessageContract m) {
         System.out.println("Received " + m.getValue());
         MessageEntity message = new MessageEntity("Received " + m.getValue());
-        entities.persist(message);
+        pg1.execute("insert into received_messages(id) values(:id);");
+        pg2.execute("insert into received_messages(id) values(:id);");
         System.out.println("Persisted received");
 //        throw new RuntimeException("Error on Receive!");
     }

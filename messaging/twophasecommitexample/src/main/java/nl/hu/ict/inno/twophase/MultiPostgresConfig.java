@@ -7,10 +7,7 @@ import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
-import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
+import org.springframework.jdbc.core.JdbcTemplate;
 import javax.sql.DataSource;
 
 @Configuration
@@ -23,31 +20,13 @@ public class MultiPostgresConfig {
         return new DataSourceProperties();
     }
 
-    @Primary //saywhuuut?
-    @Bean(name="pg1DataSource")
+
+    @Bean
     @Qualifier("pg1")
     public DataSource pg1DataSource() {
         return pg1()
                 .initializeDataSourceBuilder()
                 .build();
-    }
-
-    @Primary //saywhuuut?
-    @Bean
-    @Qualifier("pg1")
-    public LocalContainerEntityManagerFactoryBean pg1Factory(
-            EntityManagerFactoryBuilder builder
-    ) {
-        return builder.dataSource(pg1DataSource())
-                .packages("nl.hu.ict.inno.twophase")
-                .build();
-    }
-
-    @Primary //saywhuuut?
-    @Bean
-    @Qualifier("pg1")
-    public EntityManager pg1Manager(@Qualifier("pg1") EntityManagerFactory factory) {
-        return factory.createEntityManager();
     }
 
     @Bean
@@ -56,7 +35,7 @@ public class MultiPostgresConfig {
         return new DataSourceProperties();
     }
 
-    @Bean(name="pg2DataSource")
+    @Bean
     @Qualifier("pg2")
     public DataSource pg2DataSource() {
         return pg2()
@@ -64,23 +43,18 @@ public class MultiPostgresConfig {
                 .build();
     }
 
-
     @Bean
-    @Qualifier("pg2")
-    public LocalContainerEntityManagerFactoryBean pg2Factory(
-            @Qualifier("pg2") DataSource ds,
-            EntityManagerFactoryBuilder builder
-    ) {
-        return builder.dataSource(ds)
-                .packages("nl.hu.ict.inno.twophase")
-                .build();
+    @Qualifier("pg1")
+    public JdbcTemplate pg1Template(
+            @Qualifier("pg1") DataSource ds){
+        return new JdbcTemplate(ds);
     }
 
     @Bean
     @Qualifier("pg2")
-    public EntityManager pg2Manager(@Qualifier("pg2") EntityManagerFactory factory) {
-        return factory.createEntityManager();
+    public JdbcTemplate pg2Template(
+            @Qualifier("pg2") DataSource ds){
+        return new JdbcTemplate(ds);
     }
-
 
 }
