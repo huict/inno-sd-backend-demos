@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.core.JdbcTemplate;
 import javax.sql.DataSource;
+import java.util.Properties;
 
 @Configuration
 public class MultiPostgresConfig {
@@ -26,9 +27,17 @@ public class MultiPostgresConfig {
     @Qualifier("pg1")
     public DataSource pg1DataSource() {
 
-        return pg1()
-                .initializeDataSourceBuilder()
-                .build();
+        AtomikosDataSourceBean ds = new AtomikosDataSourceBean();
+        ds.setUniqueResourceName("pg1");
+        ds.setXaDataSourceClassName("org.postgresql.xa.PGXADataSource");
+        Properties p = new Properties();
+        p.setProperty ( "user" , "postgres" );
+        p.setProperty ( "password" , "1q2w3e!" );
+        p.setProperty ( "serverName" , "localhost" );
+        p.setProperty ( "portNumber" , "15432" );
+        p.setProperty ( "databaseName" , "twophase" );
+        ds.setXaProperties ( p );
+        return ds;
     }
 
     @Bean
@@ -40,9 +49,18 @@ public class MultiPostgresConfig {
     @Bean
     @Qualifier("pg2")
     public DataSource pg2DataSource() {
-        return pg2()
-                .initializeDataSourceBuilder()
-                .build();
+
+        AtomikosDataSourceBean ds = new AtomikosDataSourceBean();
+        ds.setUniqueResourceName("pg2");
+        ds.setXaDataSourceClassName("org.postgresql.xa.PGXADataSource");
+        Properties p = new Properties();
+        p.setProperty ( "user" , "postgres" );
+        p.setProperty ( "password" , "1q2w3e!" );
+        p.setProperty ( "serverName" , "localhost" );
+        p.setProperty ( "portNumber" , "15433" );
+        p.setProperty ( "databaseName" , "twophase" );
+        ds.setXaProperties ( p );
+        return ds;
     }
 
     @Bean
