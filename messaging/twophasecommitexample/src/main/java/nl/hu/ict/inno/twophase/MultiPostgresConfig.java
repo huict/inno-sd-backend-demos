@@ -3,6 +3,7 @@ package nl.hu.ict.inno.twophase;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.jta.atomikos.AtomikosDataSourceBean;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,6 +25,7 @@ public class MultiPostgresConfig {
     @Bean
     @Qualifier("pg1")
     public DataSource pg1DataSource() {
+
         return pg1()
                 .initializeDataSourceBuilder()
                 .build();

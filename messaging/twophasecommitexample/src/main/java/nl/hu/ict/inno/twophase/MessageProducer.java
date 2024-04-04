@@ -30,14 +30,17 @@ public class MessageProducer {
 
         System.out.println("Persisting Send");
 
-//        pg1.execute("insert into sent_messages(id, message) values(:id, :message);");
-//        pg2.execute("insert into sent_messages(id, message) values(:id, :message);");
+        pg1.update("insert into sent_messages(id, message) values(?, ?);",
+                new Object[]{newMessage.getId(), newMessage.getContent()});
+
+        pg2.update("insert into sent_messages(id, message) values(?, ?);",
+                new Object[]{newMessage.getId(), newMessage.getContent()});
 
         System.out.println("Sending");
         rabbitTemplate.convertAndSend("twophasemessages", new MessageContract(
                 String.format("Sending message %s: %s", newMessage.getId(), newMessage.getContent())));
 
         System.out.println("Sent");
-        throw new RuntimeException("Error on Sending");
+        throw new RuntimeException("Forced error to check rollback");
     }
 }
