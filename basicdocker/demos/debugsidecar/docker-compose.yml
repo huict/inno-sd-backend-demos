@@ -1,0 +1,28 @@
+version: "3.9"
+services:
+    ub1:
+        image: ubuntu
+        # Normaal heeft je container iets nuttigs te doen (zoals een website serveren)
+        # Deze container doet niets, dus die moet 'iets te doen' hebben zodat docker 'm niet
+        # automatisch kill't.
+        command: ["sleep", "infinity"]
+        volumes:
+            - shared1:/var/log
+    ub2:
+        image: ubuntu
+        command: ["sleep", "infinity"] 
+        volumes:
+            - shared2:/var/log
+    troubleshoot:
+        image: nicolaka/netshoot
+        command: ["sleep", "infinity"]
+        depends_on:
+            - ub1
+            - ub2
+        network_mode: service:ub1
+        volumes:
+            - shared1:/var/logub1
+            - shared2:/var/logub2
+volumes:
+    shared1:
+    shared2:
