@@ -1,0 +1,27 @@
+version: "3.9"
+services:
+  ub1:
+    build: .
+    tty: true
+    networks:
+      - nw1
+    cap_add:
+      - NET_ADMIN
+  ub2:
+    build: .
+    tty: true
+    networks:
+      - nw1
+      - nw2
+    cap_add:
+      - NET_ADMIN
+  ub3:
+    build: .
+    tty: true
+    networks:
+      - nw2
+    cap_add:
+      - NET_ADMIN
+networks:
+  nw1:
+  nw2:
