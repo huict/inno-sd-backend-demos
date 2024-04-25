@@ -1,5 +1,8 @@
 FROM ubuntu
-RUN "apt update -y"
-RUN "apt install -y iproute2 iputils-ping socat dnsutils traceroute tcpdump"
 
+
+ENV DEBIAN_FRONTEND="noninteractive"
+
+RUN ["apt-get", "update", "-y", "-q"]
+RUN ["apt-get", "install", "-y", "-q", "iproute2", "iputils-ping"]
 

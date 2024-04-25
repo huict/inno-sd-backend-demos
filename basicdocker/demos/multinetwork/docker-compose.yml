@@ -2,13 +2,17 @@ version: "3.9"
 services:
   ub1:
     build: .
+    image: networkdemo
     tty: true
     networks:
       - nw1
     cap_add:
       - NET_ADMIN
   ub2:
-    build: .
+    image: networkdemo
+    pull_policy: never
+    depends_on:
+      - ub1
     tty: true
     networks:
       - nw1
@@ -16,7 +20,10 @@ services:
     cap_add:
       - NET_ADMIN
   ub3:
-    build: .
+    image: networkdemo
+    pull_policy: never
+    depends_on:
+      - ub1
     tty: true
     networks:
       - nw2
@@ -24,4 +31,12 @@ services:
       - NET_ADMIN
 networks:
   nw1:
+    ipam:
+      config:
+            - subnet: 192.168.42.0/24
+              gateway: 192.168.42.254
   nw2:
+    ipam:
+      config:
+            - subnet: 192.168.44.0/24
+              gateway: 192.168.44.254
