@@ -1,0 +1,33 @@
+version: "3.9"
+services:
+  s1:
+    build: ./server
+    image: networkdemo
+    tty: true
+    networks:
+      - nw1
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - "./server/s1.conf:/etc/keepalived/keepalived.conf"
+  s2:
+    image: networkdemo
+    pull_policy: never
+    tty: true
+    networks:
+      - nw1
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - "./server/s1.conf:/etc/keepalived/keepalived.conf"
+  client:
+    build: ./client
+    tty: true
+    networks:
+      - nw1
+networks:
+  nw1:
+    ipam:
+      config:
+            - subnet: 192.168.42.0/24
+              gateway: 192.168.42.254
