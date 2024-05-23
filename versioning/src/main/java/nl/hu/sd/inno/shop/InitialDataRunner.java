@@ -16,6 +16,7 @@ import java.nio.file.Path;
 import java.util.List;
 
 @Component
+@Profile("initial")
 public class InitialDataRunner implements CommandLineRunner {
 
     private final ProductRepository products;
@@ -32,11 +33,6 @@ public class InitialDataRunner implements CommandLineRunner {
     @Override
     @Transactional
     public void run(String... args) throws Exception {
-        if(Files.exists(Path.of("./no-init"))){
-            return;
-        }else{
-            Files.createFile(Path.of("./no-init"));
-        }
 
         //https://www.bol.com/nl/nl/p/sony-mdr-zx110-on-ear-koptelefoon-zwart/9200000032872507
         Product koptelefoon = new Product("Koptelefoon", 14.19);

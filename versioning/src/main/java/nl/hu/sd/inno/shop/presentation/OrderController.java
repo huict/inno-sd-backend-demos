@@ -13,7 +13,7 @@ import java.util.*;
 @RestController
 @RequestMapping("/orders")
 public class OrderController {
-    public record OrderDto(Long id, LocalDate orderDate, String name) {
+    public record OrderDto(Long id, LocalDate orderDate, String email) {
         public static OrderDto fromOrder(Order o) {
             return new OrderDto(o.getId(), o.getDate(), o.getPerson().getEmail());
         }
