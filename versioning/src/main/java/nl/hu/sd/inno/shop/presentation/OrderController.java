@@ -22,6 +22,9 @@ public class OrderController {
     public record OrderLineDto(Long productId, String productName, int nr) {
     }
 
+    public record NewOrderLineDto(Long productId, int nr) {
+    }
+
     public record OrderDetailsDto(Long id, LocalDate orderDate, String name, List<OrderLineDto> lines) {
         public static OrderDetailsDto fromOrder(Order o) {
             List<OrderLineDto> lines = o.getOrderLines().stream().map(ol -> new OrderLineDto(ol.getProduct().getId(), ol.getProduct().getName(), ol.getNr())).toList();
@@ -30,6 +33,13 @@ public class OrderController {
     }
 
     public record NewOrderDto(String name, List<OrderLineDto> lines) {
+        NewOrderDtoV2 toV2(){
+            return new NewOrderDtoV2(this.name, this.lines.stream().map(l -> new NewOrderLineDto(l.productId, l.nr)).toList());
+        }
+    }
+
+    public record NewOrderDtoV2(String name, List<NewOrderLineDto> lines) {
+
     }
 
     private final OrderService orderService;
@@ -68,6 +78,13 @@ public class OrderController {
 
     @PostMapping
     public ResponseEntity newOrder(@RequestBody NewOrderDto newOrder) {
+        return newOrder(newOrder.toV2());
+    }
+
+    @PostMapping(headers = {
+            "x-api-version=2"
+    })
+    public ResponseEntity newOrder(@RequestBody NewOrderDtoV2 newOrder) {
         Map<Product, Integer> productsOrdered = new HashMap<>();
         Optional<Person> personOrdering = this.orderService.findPerson(newOrder.name());
         if(personOrdering.isEmpty()){
@@ -78,7 +95,7 @@ public class OrderController {
             return ResponseEntity.badRequest().body("Order is empty");
         }
 
-        for(OrderLineDto line: newOrder.lines()){
+        for(NewOrderLineDto line: newOrder.lines()){
             Optional<Product> foundProduct = this.orderService.findProduct(line.productId());
             if(foundProduct.isEmpty()){
                 return ResponseEntity.badRequest().body("Product %s does not exist".formatted(line.productId()));
