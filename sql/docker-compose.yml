@@ -1,0 +1,17 @@
+version: "3.9"
+services:  
+  pg:
+    build: ./db/pg
+    restart: always
+    ports: 
+      - 15432:5432
+    volumes:
+      - ./db/pg/init:/docker-entrypoint-initdb.d/
+      - ./raw:/raw
+    environment:
+      POSTGRES_PASSWORD: 1q2w3e!
+#    deploy: #We willen dat de database het een beetje zwaar heeft
+#      resources:
+#        limits:
+#          cpus: '0.5'
+#          memory: 500M

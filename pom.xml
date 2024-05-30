@@ -18,6 +18,7 @@
         <module>fallacies</module>
         <module>messaging</module>
         <module>nosql</module>
+        <module>sql</module>
         <module>rpc</module>
         <module>microservices</module>
         <module>observability</module>
