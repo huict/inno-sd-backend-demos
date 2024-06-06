@@ -24,6 +24,8 @@
         <module>observability</module>
         <module>streaming</module>
         <module>versioning</module>
+        <module>availability</module>
+        <module>availability/availabilityservice</module>
     </modules>
 
 
