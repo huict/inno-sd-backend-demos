@@ -1,25 +1,19 @@
 version: "3.9"
 services:
   s1:
-    build: ./server
-    image: networkdemo
+    build: s1
     tty: true
     networks:
       - nw1
     cap_add:
       - NET_ADMIN
-    volumes:
-      - "./server/s1.conf:/etc/keepalived/keepalived.conf"
   s2:
-    image: networkdemo
-    pull_policy: never
+    build: s2
     tty: true
     networks:
       - nw1
     cap_add:
       - NET_ADMIN
-    volumes:
-      - "./server/s1.conf:/etc/keepalived/keepalived.conf"
   client:
     build: ./client
     tty: true
