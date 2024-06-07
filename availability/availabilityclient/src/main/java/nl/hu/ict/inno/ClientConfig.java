@@ -11,7 +11,6 @@ public class ClientConfig {
     @Bean
     @LoadBalanced
     public RestTemplate restTemplate(){
-        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         return new RestTemplate();
     }
 }
