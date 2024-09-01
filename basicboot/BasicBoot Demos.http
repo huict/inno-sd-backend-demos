@@ -1,0 +1,40 @@
+# BasicBoot Demos
+
+###
+# @name 1. GET Counter
+GET http://localhost:8090/counter
+
+###
+# @name 2. POST Counter (oneven aantal keer)
+POST http://localhost:8090/counter/increment
+
+###
+# @name 3. GET Counter (2x, zie verschil)
+GET http://localhost:8090/counter
+
+###
+# @name 4. GET Products (minstens 2x draaien)
+GET http://localhost:8090/products
+
+###
+# @name 5. POST Orders
+POST http://localhost:8090/orders
+Content-Type: application/json
+
+{
+  "name": "Tom",
+  "lines": [
+    {
+      "productId": 1,
+      "nr": 5
+    }
+  ]
+}
+
+###
+# @name 6. GET Products (2x, zie verschil)
+GET http://localhost:8090/products
+
+###
+# @name 7. GET Orders (2x, geen verschil?!)
+GET http://localhost:8090/orders
