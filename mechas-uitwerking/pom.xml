@@ -15,7 +15,7 @@
         <module>mechas</module>
     </modules>
     <groupId>nl.hu.ict.inno</groupId>
-    <artifactId>rpc</artifactId>
+    <artifactId>mechas-uitwerking</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>mechas-parent</name>
     <description>mechas-parent</description>
