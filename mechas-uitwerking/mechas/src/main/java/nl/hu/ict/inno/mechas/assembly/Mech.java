@@ -14,6 +14,7 @@ public class Mech {
     @GeneratedValue
     private Long id;
     private int maxTonnage;
+    private Status status = Status.InDesign;
 
     private int bodyWeight;
 
@@ -56,10 +57,22 @@ public class Mech {
     }
 
     public void addOrReplacePart(Part part) {
+        if(status == Status.Built){
+            throw new RuntimeException("Mech is already built");
+        }
         switch (part.slot()) {
             case Shoulder -> this.shoulders = part;
             case Arms -> this.arms = part;
             case Legs -> this.legs = part;
+        }
+    }
+
+    public void build(PartDeliveryService partDeliveryService){
+        if (isValid()) {
+            partDeliveryService.deliver(getParts());
+            this.status = Status.Built;
+        } else {
+            throw new RuntimeException("Mech is not valid");
         }
     }
 
@@ -97,5 +110,9 @@ public class Mech {
 
     public Optional<Part> getShoulders() {
         return Optional.ofNullable(shoulders);
+    }
+
+    public Status getStatus() {
+        return status;
     }
 }

@@ -14,9 +14,11 @@ import java.util.List;
 @Transactional
 public class PartsController {
     private final EntityManager entities;
+    private DeliveryService deliveryService;
 
-    public PartsController(EntityManager entities) {
+    public PartsController(EntityManager entities, DeliveryService deliveryService) {
         this.entities = entities;
+        this.deliveryService = deliveryService;
     }
 
     @GetMapping("/manufacturers")
@@ -29,12 +31,26 @@ public class PartsController {
         return entities.createQuery("select p from Part p", Part.class).getResultList();
     }
 
+    public record DeliverPartDTO(List<Long> partIds) {
+    }
+
+    @PostMapping("/parts/deliver")
+    public void deliverParts(@RequestBody DeliverPartDTO deliveryDTO) {
+        List<Part> parts = entities.createQuery("select p from Part p where p.id in :ids", Part.class)
+                .setParameter("ids", deliveryDTO.partIds())
+                .getResultList();
+        if (parts.size() != deliveryDTO.partIds().size()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Not all parts found");
+        }
+        this.deliveryService.deliver(parts);
+    }
+
     @GetMapping("/parts/{id}")
     public ResponseEntity<Part> partById(@PathVariable("id") Long id) {
         Part maybePart = this.entities.find(Part.class, id);
-        if(maybePart != null){
+        if (maybePart != null) {
             return ResponseEntity.ok(maybePart);
-        }else{
+        } else {
             return ResponseEntity.notFound().build();
         }
     }
@@ -42,14 +58,14 @@ public class PartsController {
     @PutMapping("/parts/{id}")
     public ResponseEntity<Part> updatePart(@PathVariable("id") Long id, @RequestBody Part updatedFields) {
         Part maybePart = this.entities.find(Part.class, id);
-        if(maybePart != null){
+        if (maybePart != null) {
             Manufacturer m = entities.find(Manufacturer.class, updatedFields.getManufacturer().getId());
-            if(m == null){
+            if (m == null) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Manufacturer not found");
             }
             maybePart.update(updatedFields, m);
             return ResponseEntity.ok(maybePart);
-        }else{
+        } else {
             return ResponseEntity.notFound().build();
         }
     }
@@ -57,7 +73,7 @@ public class PartsController {
     @PostMapping("/parts")
     public ResponseEntity<Part> addPart(@RequestBody Part p) {
         Manufacturer m = entities.find(Manufacturer.class, p.getManufacturer().getId());
-        if(m == null){
+        if (m == null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Manufacturer not found");
         }
         Part newPart = new Part(p.getModel(), p.getWeight(), p.getSlot(), m);
@@ -69,10 +85,10 @@ public class PartsController {
     @DeleteMapping("/parts/{id}")
     public ResponseEntity<Part> removePart(@PathVariable("id") Long id) {
         Part maybePart = this.entities.find(Part.class, id);
-        if(maybePart != null){
+        if (maybePart != null) {
             entities.remove(maybePart);
             return ResponseEntity.noContent().build();
-        }else{
+        } else {
             return ResponseEntity.notFound().build();
         }
     }

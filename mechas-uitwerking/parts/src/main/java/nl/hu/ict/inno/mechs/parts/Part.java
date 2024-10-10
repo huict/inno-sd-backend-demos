@@ -25,6 +25,8 @@ public class Part {
     protected Part() {
     }
 
+    private int stock;
+
     public Part(String model, int weight, Slot slot, Manufacturer manufacturer) {
         this();
         this.weight = weight;
@@ -63,5 +65,25 @@ public class Part {
         this.model = updatedFields.getModel();
         this.manufacturer = updatedManufacturer;
         this.weight = updatedFields.getWeight();
+    }
+
+    public int getStock() {
+        return stock;
+    }
+
+    public void deliverToStock(int n) {
+        this.stock = this.stock + n;
+    }
+
+    public void deliverToAssembly() {
+        deliverToAssembly(1);
+    }
+
+    public void deliverToAssembly(int n) {
+        if (this.stock - n >= 0) {
+            this.stock = this.stock - n;
+        } else {
+            throw new RuntimeException("Not enough stock available");
+        }
     }
 }

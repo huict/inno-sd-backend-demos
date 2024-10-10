@@ -34,6 +34,9 @@ public class InitialData implements ApplicationRunner {
                 new Part("Mokerhamers", 10, Slot.Arms, jinteki),
                 new Part("Octopusarmen", 10, Slot.Arms, haas)
         )){
+            if(entity instanceof Part){
+                ((Part) entity).deliverToStock(3);
+            }
             entities.persist(entity);
         }
     }

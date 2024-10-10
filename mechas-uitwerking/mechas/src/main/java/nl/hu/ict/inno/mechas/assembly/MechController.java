@@ -1,7 +1,5 @@
 package nl.hu.ict.inno.mechas.assembly;
 
-import nl.hu.ict.inno.mechas.assembly.Mech;
-import nl.hu.ict.inno.mechas.assembly.Part;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,18 +27,20 @@ public class MechController {
         }
     }
 
-    public record MechDTO(long id, int currentWeight, int maxWeight, boolean valid, List<PartDTO> parts) {
+    public record MechDTO(long id, Status status, int currentWeight, int maxWeight, boolean valid, List<PartDTO> parts) {
         public static MechDTO fromMech(Mech mech) {
-            return new MechDTO(mech.getId(), mech.getTotalWeight(), mech.getMaxTonnage(), mech.isValid(), PartDTO.fromParts(mech.getParts()));
+            return new MechDTO(mech.getId(), mech.getStatus(), mech.getTotalWeight(), mech.getMaxTonnage(), mech.isValid(), PartDTO.fromParts(mech.getParts()));
         }
     }
 
     private final MechRepository mechs;
     private final ReadOnlyPartRepository parts;
+    private final PartDeliveryService partDeliveryService;
 
-    public MechController(MechRepository mechs, ReadOnlyPartRepository parts) {
+    public MechController(MechRepository mechs, ReadOnlyPartRepository parts, PartDeliveryService partDeliveryService) {
         this.mechs = mechs;
         this.parts = parts;
+        this.partDeliveryService = partDeliveryService;
     }
 
     @GetMapping
@@ -53,6 +53,17 @@ public class MechController {
         Optional<Mech> maybeMech = mechs.findById(id);
         return maybeMech
                 .map(mech -> ResponseEntity.ok(MechDTO.fromMech(mech)))
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @PostMapping("{id}/build")
+    public ResponseEntity<MechDTO> build(@PathVariable("id") Long id) {
+        Optional<Mech> maybeMech = mechs.findById(id);
+        return maybeMech
+                .map(mech -> {
+                    mech.build(this.partDeliveryService);
+                    return ResponseEntity.ok(MechDTO.fromMech(mech));
+                })
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 

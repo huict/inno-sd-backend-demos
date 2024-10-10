@@ -1,7 +1,6 @@
 package nl.hu.ict.inno.mechas.assembly;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -9,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Component
-public class RestPartRepository implements ReadOnlyPartRepository {
+public class RestPartService implements ReadOnlyPartRepository, PartDeliveryService {
     private RestTemplate restTemplate = new RestTemplate();
 
     private String baseAddress = "http://localhost:8080/parts";
@@ -42,5 +41,17 @@ public class RestPartRepository implements ReadOnlyPartRepository {
             return List.of();
         }
         return List.of(parts);
+    }
+
+    private record DeliveryDTO(List<Long> partIds) {
+    }
+
+    @Override
+    public void deliver(List<Part> parts) {
+        List<Long> ids = parts.stream().map(Part::id).toList();
+        var resp = this.restTemplate.postForEntity(baseAddress + "/deliver", new DeliveryDTO(ids), Void.class);
+        if(!resp.getStatusCode().is2xxSuccessful()){
+            throw new RuntimeException("Error while delivering parts: " + resp.getStatusCode());
+        }
     }
 }
