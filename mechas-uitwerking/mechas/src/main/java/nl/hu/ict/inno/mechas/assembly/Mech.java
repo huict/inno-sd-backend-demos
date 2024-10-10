@@ -1,10 +1,6 @@
 package nl.hu.ict.inno.mechas.assembly;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import nl.hu.ict.inno.mechs.parts.Part;
+import jakarta.persistence.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -21,11 +17,28 @@ public class Mech {
 
     private int bodyWeight;
 
-    @ManyToOne
+    @AttributeOverrides({
+            @AttributeOverride(name = "id", column = @Column(name = "arms_id")),
+            @AttributeOverride(name = "name", column = @Column(name = "arms_name")),
+            @AttributeOverride(name = "weight", column = @Column(name = "arms_weight")),
+            @AttributeOverride(name = "slot", column = @Column(name = "arms_slot"))
+    })
     private Part arms;
-    @ManyToOne
+
+    @AttributeOverrides({
+            @AttributeOverride(name = "id", column = @Column(name = "legs_id")),
+            @AttributeOverride(name = "name", column = @Column(name = "legs_name")),
+            @AttributeOverride(name = "weight", column = @Column(name = "legs_weight")),
+            @AttributeOverride(name = "slot", column = @Column(name = "legs_slot"))
+    })
     private Part legs;
-    @ManyToOne
+
+    @AttributeOverrides({
+            @AttributeOverride(name = "id", column = @Column(name = "shoulders_id")),
+            @AttributeOverride(name = "name", column = @Column(name = "shoulders_name")),
+            @AttributeOverride(name = "weight", column = @Column(name = "shoulders_weight")),
+            @AttributeOverride(name = "slot", column = @Column(name = "shoulders_slot"))
+    })
     private Part shoulders;
 
     public Long getId() {
@@ -43,7 +56,7 @@ public class Mech {
     }
 
     public void addOrReplacePart(Part part) {
-        switch (part.getSlot()) {
+        switch (part.slot()) {
             case Shoulder -> this.shoulders = part;
             case Arms -> this.arms = part;
             case Legs -> this.legs = part;
@@ -55,7 +68,7 @@ public class Mech {
     }
 
     public int getTotalWeight() {
-        return this.bodyWeight + getParts().stream().filter(Objects::nonNull).mapToInt(Part::getWeight).sum();
+        return this.bodyWeight + getParts().stream().filter(Objects::nonNull).mapToInt(Part::weight).sum();
     }
 
     public boolean isComplete() {

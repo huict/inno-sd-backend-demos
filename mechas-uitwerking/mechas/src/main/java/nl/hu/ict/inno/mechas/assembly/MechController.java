@@ -1,7 +1,7 @@
 package nl.hu.ict.inno.mechas.assembly;
 
-import nl.hu.ict.inno.mechs.assembly.Mech;
-import nl.hu.ict.inno.mechs.parts.Part;
+import nl.hu.ict.inno.mechas.assembly.Mech;
+import nl.hu.ict.inno.mechas.assembly.Part;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,9 +17,11 @@ import java.util.Optional;
 @Transactional
 public class MechController {
 
+    public record AddPartDTO(Long id){}
+
     public record PartDTO(Long id, String label, int weight) {
         public static PartDTO fromPart(Part part) {
-            return new PartDTO(part.getId(), part.toString(), part.getWeight());
+            return new PartDTO(part.id(), part.toString(), part.weight());
         }
 
         public static List<PartDTO> fromParts(List<Part> parts) {
@@ -83,7 +85,7 @@ public class MechController {
     }
 
     @PostMapping("{id}/parts")
-    public ResponseEntity<List<PartDTO>> addOrReplacePart(@PathVariable("id") Long id, @RequestBody PartDTO part) {
+    public ResponseEntity<List<PartDTO>> addOrReplacePart(@PathVariable("id") Long id, @RequestBody AddPartDTO part) {
         Part toAdd = parts.findById(part.id())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, String.format("Part %s not found", part.id())));
 

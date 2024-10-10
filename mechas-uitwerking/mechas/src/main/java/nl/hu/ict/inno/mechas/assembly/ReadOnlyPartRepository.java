@@ -1,6 +1,6 @@
 package nl.hu.ict.inno.mechas.assembly;
 
-import nl.hu.ict.inno.mechs.parts.Part;
+import nl.hu.ict.inno.mechas.assembly.Part;
 
 import java.util.List;
 import java.util.Optional;

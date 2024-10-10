@@ -1,0 +1,30 @@
+### GET Mechs
+GET http://localhost:8081/mechs
+### Start new Mech
+POST http://localhost:8081/mechs
+
+
+
+### Add part1 to mech
+POST http://localhost:8081/mechs/1/parts
+Content-Type: application/json
+
+{
+  "id": 1
+}
+
+### Add part1 to mech
+POST http://localhost:8081/mechs/1/parts
+Content-Type: application/json
+
+{
+  "id": 3
+}
+
+### Add part1 to mech
+POST http://localhost:8081/mechs/1/parts
+Content-Type: application/json
+
+{
+  "id": 5
+}
