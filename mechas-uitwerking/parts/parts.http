@@ -1,1 +1,5 @@
 GET http://localhost:8080/parts
+
+###
+
+DELETE http://localhost:8080/parts/5

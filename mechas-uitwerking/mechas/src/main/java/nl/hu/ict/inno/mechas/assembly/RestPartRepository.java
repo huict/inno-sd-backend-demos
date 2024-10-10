@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,6 +19,10 @@ public class RestPartRepository implements ReadOnlyPartRepository {
     }
 
     private record PartDTO(Long id, String model, int weight, Slot slot, ManufacturerDTO manufacturer) {
+
+        Part toPart(){
+            return new Part(this.id(), String.format("%s-%s", this.manufacturer().company(), this.model()), this.weight(), this.slot());
+        }
     }
 
     @Override
@@ -26,7 +31,7 @@ public class RestPartRepository implements ReadOnlyPartRepository {
         if (resp.getStatusCode().is2xxSuccessful()) {
             PartDTO dto = resp.getBody();
 
-            return Optional.of(new Part(dto.id(), String.format("%s-%s", dto.manufacturer().company(), dto.model()), dto.weight(), dto.slot()));
+            return Optional.of(dto.toPart());
         }else if (resp.getStatusCode().equals(HttpStatus.NOT_FOUND)){
             return Optional.empty();
         }else{
@@ -36,11 +41,11 @@ public class RestPartRepository implements ReadOnlyPartRepository {
 
     @Override
     public List<Part> findAll() {
-        Part[] parts = this.restTemplate.getForEntity(baseAddress, Part[].class).getBody();
+        PartDTO[] parts = this.restTemplate.getForEntity(baseAddress, PartDTO[].class).getBody();
 
         if (parts == null) {
             return List.of();
         }
-        return List.of(parts);
+        return Arrays.stream(parts).map(PartDTO::toPart).toList();
     }
 }

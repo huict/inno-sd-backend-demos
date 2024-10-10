@@ -48,6 +48,12 @@ public class MechController {
         return mechs.findAll().stream().map(MechDTO::fromMech).toList();
     }
 
+
+    @GetMapping("/availableParts")
+    public List<PartDTO> getAvailableParts() {
+        return parts.findAll().stream().map(PartDTO::fromPart).toList();
+    }
+
     @GetMapping("{id}")
     public ResponseEntity<MechDTO> getById(@PathVariable("id") Long id) {
         Optional<Mech> maybeMech = mechs.findById(id);

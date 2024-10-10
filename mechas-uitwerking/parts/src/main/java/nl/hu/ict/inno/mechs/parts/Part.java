@@ -1,8 +1,7 @@
 package nl.hu.ict.inno.mechs.parts;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
+
 
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"model", "manufacturer"}))
@@ -18,8 +17,7 @@ public class Part {
     private String model;
 
     @JoinColumn(name = "manufacturer")
-    @Cascade({CascadeType.PERSIST, CascadeType.DELETE_ORPHAN})
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Manufacturer manufacturer;
 
     protected Part() {
