@@ -16,7 +16,7 @@ public class RestPartService implements ReadOnlyPartRepository, PartDeliveryServ
     private record ManufacturerDTO(Long id, String company) {
     }
 
-    private record PartDTO(Long id, String model, int weight, Slot slot, ManufacturerDTO manufacturer) {
+    private record PartDTO(Long id, String model, int stock, int weight, Slot slot, ManufacturerDTO manufacturer) {
     }
 
     @Override
@@ -25,7 +25,7 @@ public class RestPartService implements ReadOnlyPartRepository, PartDeliveryServ
         if (resp.getStatusCode().is2xxSuccessful()) {
             PartDTO dto = resp.getBody();
 
-            return Optional.of(new Part(dto.id(), String.format("%s-%s", dto.manufacturer().company(), dto.model()), dto.weight(), dto.slot()));
+            return Optional.of(new Part(dto.id(), String.format("%s-%s", dto.manufacturer().company(), dto.model()), dto.stock(), dto.weight(), dto.slot()));
         }else if (resp.getStatusCode().equals(HttpStatus.NOT_FOUND)){
             return Optional.empty();
         }else{

@@ -1,10 +1,12 @@
+@mech-id = 1
+
 ### GET Mechs
 GET http://localhost:8081/mechs
 ### Start new Mech
 POST http://localhost:8081/mechs
 
 ### Add part1 to mech
-POST http://localhost:8081/mechs/1/parts
+POST http://localhost:8081/mechs/{{mech-id}}/parts
 Content-Type: application/json
 
 {
@@ -12,7 +14,7 @@ Content-Type: application/json
 }
 
 ### Add part1 to mech
-POST http://localhost:8081/mechs/1/parts
+POST http://localhost:8081/mechs/{{mech-id}}/parts
 Content-Type: application/json
 
 {
@@ -20,7 +22,7 @@ Content-Type: application/json
 }
 
 ### Add part1 to mech
-POST http://localhost:8081/mechs/1/parts
+POST http://localhost:8081/mechs/{{mech-id}}/parts
 Content-Type: application/json
 
 {

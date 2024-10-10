@@ -18,28 +18,13 @@ public class Mech {
 
     private int bodyWeight;
 
-    @AttributeOverrides({
-            @AttributeOverride(name = "id", column = @Column(name = "arms_id")),
-            @AttributeOverride(name = "name", column = @Column(name = "arms_name")),
-            @AttributeOverride(name = "weight", column = @Column(name = "arms_weight")),
-            @AttributeOverride(name = "slot", column = @Column(name = "arms_slot"))
-    })
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Part arms;
 
-    @AttributeOverrides({
-            @AttributeOverride(name = "id", column = @Column(name = "legs_id")),
-            @AttributeOverride(name = "name", column = @Column(name = "legs_name")),
-            @AttributeOverride(name = "weight", column = @Column(name = "legs_weight")),
-            @AttributeOverride(name = "slot", column = @Column(name = "legs_slot"))
-    })
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Part legs;
 
-    @AttributeOverrides({
-            @AttributeOverride(name = "id", column = @Column(name = "shoulders_id")),
-            @AttributeOverride(name = "name", column = @Column(name = "shoulders_name")),
-            @AttributeOverride(name = "weight", column = @Column(name = "shoulders_weight")),
-            @AttributeOverride(name = "slot", column = @Column(name = "shoulders_slot"))
-    })
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Part shoulders;
 
     public Long getId() {
@@ -60,6 +45,10 @@ public class Mech {
         if(status == Status.Built){
             throw new RuntimeException("Mech is already built");
         }
+        if(part.stock() < 1){
+            throw new RuntimeException("Part is out of stock");
+        }
+
         switch (part.slot()) {
             case Shoulder -> this.shoulders = part;
             case Arms -> this.arms = part;
