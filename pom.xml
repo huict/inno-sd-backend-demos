@@ -26,6 +26,7 @@
         <module>versioning</module>
         <module>availability</module>
         <module>availability/availabilityservice</module>
+        <module>mechas-uitwerking</module>
     </modules>
 
 
