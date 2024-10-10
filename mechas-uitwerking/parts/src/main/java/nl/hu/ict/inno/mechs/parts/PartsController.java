@@ -14,9 +14,14 @@ import java.util.List;
 @Transactional
 public class PartsController {
     private final EntityManager entities;
+    private final PartsEventsPublisher publisher;
 
-    public PartsController(EntityManager entities) {
+    public PartsController(
+            EntityManager entities,
+            PartsEventsPublisher publisher
+    ) {
         this.entities = entities;
+        this.publisher = publisher;
     }
 
     @GetMapping("/manufacturers")
@@ -48,6 +53,7 @@ public class PartsController {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Manufacturer not found");
             }
             maybePart.update(updatedFields, m);
+            publisher.partUpdated(maybePart);
             return ResponseEntity.ok(maybePart);
         }else{
             return ResponseEntity.notFound().build();
@@ -62,6 +68,7 @@ public class PartsController {
         }
         Part newPart = new Part(p.getModel(), p.getWeight(), p.getSlot(), m);
         entities.persist(newPart);
+        publisher.partAdded(newPart);
         return ResponseEntity.created(URI.create(String.format("/parts/%s", newPart.getId()))).body(newPart);
     }
 
@@ -71,6 +78,7 @@ public class PartsController {
         Part maybePart = this.entities.find(Part.class, id);
         if(maybePart != null){
             entities.remove(maybePart);
+            publisher.partDeleted(maybePart);
             return ResponseEntity.noContent().build();
         }else{
             return ResponseEntity.notFound().build();

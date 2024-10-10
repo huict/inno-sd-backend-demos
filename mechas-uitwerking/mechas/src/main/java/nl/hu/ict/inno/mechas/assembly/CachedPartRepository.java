@@ -1,5 +1,6 @@
 package nl.hu.ict.inno.mechas.assembly;
 
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
@@ -34,8 +35,32 @@ public class CachedPartRepository implements ReadOnlyPartRepository {
 
     private void refresh(){
         if (LocalDateTime.now().isAfter(lastUpdate.plusMinutes(10))) {
-            this.cachedParts = this.source.findAll();
+            this.cachedParts = new ArrayList<>(this.source.findAll());
             this.lastUpdate = LocalDateTime.now();
+        }
+    }
+
+
+
+    private record ManufacturerDTO(Long id, String company) {
+    }
+    private record PartDTO(Long id, String model, int weight, Slot slot, ManufacturerDTO manufacturer) {
+        Part toPart(){
+            return new Part(this.id(), String.format("%s-%s", this.manufacturer().company(), this.model()), this.weight(), this.slot());
+        }
+    }
+    private enum Event { ADDED, DELETED, UPDATED }
+    private record PartEventDTO(Event e, PartDTO part){}
+
+    @RabbitListener(queues = "parts-cache")
+    public void handlePartEvent(PartEventDTO event){
+        switch (event.e()){
+            case ADDED -> this.cachedParts.add(event.part().toPart());
+            case DELETED -> this.cachedParts.removeIf(p -> p.id().equals(event.part().id()));
+            case UPDATED -> {
+                this.cachedParts.removeIf(p -> p.id().equals(event.part().id()));
+                this.cachedParts.add(event.part().toPart());
+            }
         }
     }
 }
