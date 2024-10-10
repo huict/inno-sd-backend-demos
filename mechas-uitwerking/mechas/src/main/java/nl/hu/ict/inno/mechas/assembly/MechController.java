@@ -21,7 +21,7 @@ public class MechController {
 
     public record PartDTO(Long id, String label, int weight) {
         public static PartDTO fromPart(Part part) {
-            return new PartDTO(part.id(), part.toString(), part.weight());
+            return new PartDTO(part.id(), part.name(), part.weight());
         }
 
         public static List<PartDTO> fromParts(List<Part> parts) {
