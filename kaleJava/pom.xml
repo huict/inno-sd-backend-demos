@@ -14,16 +14,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-    <dependencies>
-        <!-- https://mvnrepository.com/artifact/com.github.ricksbrown/cowsay -->
-        <dependency>
-            <groupId>com.github.ricksbrown</groupId>
-            <artifactId>cowsay</artifactId>
-            <version>1.1.0</version>
-        </dependency>
-
-    </dependencies>
-
     <build>
         <finalName>kaleJava</finalName>
         <plugins>

@@ -1,7 +1,5 @@
 package nl.tomkemper;
 
-import com.github.ricksbrown.cowsay.Cowsay;
-
 import java.util.Scanner;
 
 public class Main {
@@ -13,8 +11,7 @@ public class Main {
 
         String naam = scanner.nextLine();
 
-        String cowed = Cowsay.say(new String[]{message + " " + naam});
-        System.out.println(cowed);
+        System.out.println(message + " " + naam);
 
         if (naam.equals("Bob")) {
             throw new RuntimeException("Jammer Bob, echt jammer...");
