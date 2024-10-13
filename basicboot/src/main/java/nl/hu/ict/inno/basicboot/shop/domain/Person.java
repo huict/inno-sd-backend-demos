@@ -1,6 +1,6 @@
 package nl.hu.ict.inno.basicboot.shop.domain;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 public class Person {

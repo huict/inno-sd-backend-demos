@@ -1,12 +1,13 @@
 package nl.hu.ict.inno.basicboot.shop.application;
 
+import jakarta.transaction.Transactional;
 import nl.hu.ict.inno.basicboot.shop.domain.Delivery;
 import nl.hu.ict.inno.basicboot.shop.data.DeliveryRepository;
 import nl.hu.ict.inno.basicboot.shop.data.ProductRepository;
 import nl.hu.ict.inno.basicboot.shop.domain.Product;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
+
 import java.util.List;
 import java.util.Optional;
 

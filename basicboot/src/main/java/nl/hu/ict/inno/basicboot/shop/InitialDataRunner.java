@@ -1,5 +1,6 @@
 package nl.hu.ict.inno.basicboot.shop;
 
+import jakarta.transaction.Transactional;
 import nl.hu.ict.inno.basicboot.shop.data.PersonRepository;
 import nl.hu.ict.inno.basicboot.shop.data.OrderRepository;
 import nl.hu.ict.inno.basicboot.shop.data.ProductRepository;
@@ -10,7 +11,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
-import javax.transaction.Transactional;
+
 import java.util.List;
 
 @Component
