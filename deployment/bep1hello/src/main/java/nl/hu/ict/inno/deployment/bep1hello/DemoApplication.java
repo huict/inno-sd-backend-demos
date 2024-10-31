@@ -1,4 +1,4 @@
-package nl.hu.ict.inno.deployment.springhello;
+package nl.hu.ict.inno.deployment.bep1hello;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;

@@ -1,4 +1,4 @@
-package nl.hu.ict.inno.deployment.springhello;
+package nl.hu.ict.inno.deployment.bep1hello;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
