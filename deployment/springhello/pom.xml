@@ -1,0 +1,13 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>nl.hu.ict.inno</groupId>
+    <artifactId>deploy-springhello</artifactId>
+    <version>1</version>
+    <packaging>pom</packaging>
+
+    <modules>
+    </modules>
+
+
+</project>
