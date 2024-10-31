@@ -18,6 +18,7 @@
         <module>crudhello</module>
         <module>rabbithello</module>
         <module>springhello</module>
+        <module>kaleJava</module>
     </modules>
 
 
