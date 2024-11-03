@@ -11,7 +11,9 @@ public class Main {
 
         String naam = scanner.nextLine();
 
-        System.out.println(message + " " + naam);
+//        String formatted = Cowsay.say(new String[]{message, naam});
+        String formatted = message + " " + naam;
+        System.out.println(formatted);
 
         if (naam.equals("Bob")) {
             throw new RuntimeException("Jammer Bob, echt jammer...");
