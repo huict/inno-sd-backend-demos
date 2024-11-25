@@ -57,3 +57,11 @@ services:
   scylla-replica:
     image: scylladb/scylla
     command: [ '--smp 1', '--seeds=scylla-primary' ]
+  redis:
+    image: redis
+    ports:
+      - 6379:6379
+  redis-insight:
+    image: redis/redisinsight:latest
+    ports:
+      - "5540:5540"

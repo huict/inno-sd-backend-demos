@@ -1,21 +1,26 @@
-load csv with headers from 'file:///persons.csv' as line
-create (:Person { id: line.id, name: line.naam  })
+MATCH (n)
+DETACH DELETE n;
 
-load csv with headers from 'file:///products.csv' as line
-create (:Product { id: line.id, name: line.naam, price: line.prijs  })
+load csv with headers from 'file:///klant.csv' as line
+create (:Klant { klantId: toInteger(line.klantnr), name: line.naam  });
 
-load csv with headers from 'file:///orders.csv' as line
-merge (o:Order { id: line.id })
+load csv with headers from 'file:///artikel.csv' as line
+create (:Artikel { artikelId: toInteger(line.artnr), name: line.naam, price: line.prijs  });
 
-load csv with headers from 'file:///orders.csv' as line
-match (p:Person { name: line.person })
-match (pr:Product { name: line.product })
-match (o:Order { id: line.id })
-merge (o)-[:ORDERED_BY]->(p)
-merge (o)-[:ORDERED { nr: line.nr }]->(pr)
+load csv with headers from 'file:///bestelling.csv' as line
+match (k:Klant { klantId: toInteger(line.klantnr) })
+merge (o:Bestelling { bestellingId: toInteger(line.bestnr), datum: line.datum })
+merge (k)-[:ORDERS]->(o);
 
-with 'Groene BBQ' as target
-match (p:Person)<-[:ORDERED_BY]-(o:Order)-[:ORDERED]->(pr:Product {name: target}) 
-match (p) <-[:ORDERED_BY]-(oo)-[:ORDERED]->(np:Product)
-where np.name <> target
-return np
+load csv with headers from 'file:///besteldartikel.csv' as line
+match (a:Artikel { artikelId: toInteger(line.artnr) })
+match (b:Bestelling { bestellingId: toInteger(line.bestnr) })
+merge (b)-[:CONTAINS { aantal: toInteger(line.aantal), prijs: line.bestelprijs } ]->(a);
+
+
+
+/*
+match(k:Klant)-->(:Bestelling)-->(:Artikel { artikelId: 124})
+match(k)-->(:Bestelling)-->(oa:Artikel) where oa.artikelId <> 124
+return oa;
+*/
